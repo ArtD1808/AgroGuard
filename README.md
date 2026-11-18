@@ -62,3 +62,26 @@ greenhouse correct thresholds from the first minute.
 **Chosen Track: Agro-intelligence** - crop knowledge + predictive analytics on top of the required modules.
 
 Detailed description of every module: [Project Charter → Feature List](docs/PROJECT_CHARTER.md#5-feature-list-m1-m8)
+
+---
+
+## 👥 Team & Roles
+
+| Member | Role | Modules |
+|---|---|---|
+| **Artur Kurmashev** | Team Lead · Backend Developer | M1 (backend: JWT, bcrypt, owner isolation), Heat Guard regression engine |
+| **Maxim Li** | Mobile Developer (.NET MAUI) | M1 (UI), M2, M3, M8 |
+| **Nurdaulet Zhumabay** | Database & Automation Engineer | M4, M5, Crop Profiles data |
+| **Ilnur Garifov** | UI/UX Designer · QA · Docs | M6, M7 |
+
+## 📂 Repository Structure (Week 1)
+
+```text
+AgroGuard/
+├── docs/
+│   └── PROJECT_CHARTER.md
+├── .gitignore
+└── README.md
+```
+
+> Source code folders will be added in the next stages of the project.
