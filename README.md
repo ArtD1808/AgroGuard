@@ -85,7 +85,6 @@ AgroGuard/
 ```
 
 > Source code folders will be added in the next stages of the project.
-<<<<<<< HEAD
 
 ---
 
