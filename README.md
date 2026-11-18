@@ -85,6 +85,7 @@ AgroGuard/
 ```
 
 > Source code folders will be added in the next stages of the project.
+<<<<<<< HEAD
 
 ---
 
@@ -97,3 +98,5 @@ AgroGuard/
 ---
 
 *Educational project - Group SW 1-24, Atyrau 2026.*
+=======
+>>>>>>> 64bcc1f533dc80a73b373c1ee62144f2177f81dd
