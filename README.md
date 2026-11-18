@@ -32,3 +32,14 @@ greenhouse correct thresholds from the first minute.
 | **Security** | JWT + bcrypt |
 | **Analytics** | Linear regression (least squares) - Heat Guard |
 | **Collaboration** | Git + GitHub (feature branches, pull requests) |
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+|---|---|
+| 🔥 **Heat Guard** | 2-hour overheating forecast (linear regression) + preventive ventilation |
+| 🌿 **Crop Profiles** | One-tap optimal thresholds for Tomatoes, Cucumbers, Strawberries, Greens - no cold start |
+| 📊 **Multi-greenhouse dashboard** | 4 live parameters for every greenhouse on one screen |
+| 🔔 **Smart alerts** | Warnings before and during critical situations |
