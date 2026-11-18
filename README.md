@@ -32,3 +32,68 @@ greenhouse correct thresholds from the first minute.
 | **Security** | JWT + bcrypt |
 | **Analytics** | Linear regression (least squares) - Heat Guard |
 | **Collaboration** | Git + GitHub (feature branches, pull requests) |
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+|---|---|
+| 🔥 **Heat Guard** | 2-hour overheating forecast (linear regression) + preventive ventilation |
+| 🌿 **Crop Profiles** | One-tap optimal thresholds for Tomatoes, Cucumbers, Strawberries, Greens - no cold start |
+| 📊 **Multi-greenhouse dashboard** | 4 live parameters for every greenhouse on one screen |
+| 🔔 **Smart alerts** | Warnings before and during critical situations |
+
+---
+
+## 🧩 Required Modules
+
+| # | Module |
+|---|---|
+| **M1** | Authentication |
+| **M2** | Dashboard |
+| **M3** | Remote Control |
+| **M4** | Operating Modes |
+| **M5** | Notifications |
+| **M6** | History and Charts |
+| **M7** | Settings |
+| **M8** | Failure Handling |
+
+**Chosen Track: Agro-intelligence** - crop knowledge + predictive analytics on top of the required modules.
+
+Detailed description of every module: [Project Charter → Feature List](docs/PROJECT_CHARTER.md#5-feature-list-m1-m8)
+
+---
+
+## 👥 Team & Roles
+
+| Member | Role | Modules |
+|---|---|---|
+| **Artur Kurmashev** | Team Lead · Backend Developer | M1 (backend: JWT, bcrypt, owner isolation), Heat Guard regression engine |
+| **Maxim Li** | Mobile Developer (.NET MAUI) | M1 (UI), M2, M3, M8 |
+| **Nurdaulet Zhumabay** | Database & Automation Engineer | M4, M5, Crop Profiles data |
+| **Ilnur Garifov** | UI/UX Designer · QA · Docs | M6, M7 |
+
+## 📂 Repository Structure (Week 1)
+
+```text
+AgroGuard/
+├── docs/
+│   └── PROJECT_CHARTER.md
+├── .gitignore
+└── README.md
+```
+
+> Source code folders will be added in the next stages of the project.
+
+---
+
+## 🗓️ Progress
+
+| Stage | Status |
+|---|---|
+| Week 1 - Idea and Team | ✅ Done |
+
+---
+
+*Educational project - Group SW 1-24, Atyrau 2026.*
