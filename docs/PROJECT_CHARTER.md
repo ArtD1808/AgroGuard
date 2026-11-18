@@ -20,7 +20,11 @@
 
 ## 2. Target User (Persona)
 
-_To be added by Ilnur Garifov._
+**Serik Abenov, 42 years old, commercial farmer, Atyrau region**
+
+Serik Abenov is a 42-year-old commercial farmer who runs three polycarbonate greenhouses (about 1,500 m² in total) near Atyrau, growing tomatoes and cucumbers for local supermarkets and the city bazaar. In spring and summer the air inside a closed greenhouse can jump from 28 °C to over 40 °C in less than two hours, and above 35 °C tomato flowers drop and cucumber leaves burn, so a single heat spike can destroy up to 30% of a harvest worth several million tenge. Because he spends most of the day on the road delivering produce and meeting buyers, he physically cannot watch his greenhouses 24/7, and his simple thermometer alarms react only when the damage is already happening. He needs one app that shows all three greenhouses at a glance, warns him before the temperature becomes dangerous and acts automatically when he cannot.
+
+**Key pains:** sudden temperature spikes · risk of losing a harvest worth millions of tenge · impossible to watch three greenhouses 24/7.
 
 ---
 
