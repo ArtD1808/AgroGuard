@@ -80,7 +80,15 @@ Serik Abenov is a 42-year-old commercial farmer who runs three polycarbonate gre
 
 ## 6. Team Setup & Roles
 
-_To be added by Maxim Li._
+| Member | Role | Design responsibility | Modules | Architecture part |
+|---|---|---|---|---|
+| **Artur Kurmashev** | Team Lead · Backend Developer | REST API contract, system architecture diagram | M1 (backend: JWT, bcrypt, owner isolation), Heat Guard regression engine | FastAPI service layer; GitHub repository, code review, merging PRs |
+| **Maxim Li** | Mobile Developer (.NET MAUI) | Navigation flow; Login, Dashboard and Devices screens | M1 (UI), M2, M3, M8 | .NET MAUI app (MVVM), API client data layer |
+| **Nurdaulet Zhumabay** | Database & Automation Engineer | ER diagram / PostgreSQL schema | M4, M5, Crop Profiles data | PostgreSQL database, automation loop, seed data, DB-console demo queries |
+| **Ilnur Garifov** | UI/UX Designer · QA · Docs | Visual identity (colours, fonts); History, Alerts and Settings screens | M6, M7 | Chart component; test scenarios, presentations, documentation |
+
+**Repository:** https://github.com/ArtD1808/AgroGuard  
+**Workflow:** every member works in a feature branch and opens a Pull Request; the Team Lead reviews and merges into `main`.
 
 ---
 
