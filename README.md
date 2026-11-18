@@ -43,3 +43,22 @@ greenhouse correct thresholds from the first minute.
 | 🌿 **Crop Profiles** | One-tap optimal thresholds for Tomatoes, Cucumbers, Strawberries, Greens - no cold start |
 | 📊 **Multi-greenhouse dashboard** | 4 live parameters for every greenhouse on one screen |
 | 🔔 **Smart alerts** | Warnings before and during critical situations |
+
+---
+
+## 🧩 Required Modules
+
+| # | Module |
+|---|---|
+| **M1** | Authentication |
+| **M2** | Dashboard |
+| **M3** | Remote Control |
+| **M4** | Operating Modes |
+| **M5** | Notifications |
+| **M6** | History and Charts |
+| **M7** | Settings |
+| **M8** | Failure Handling |
+
+**Chosen Track: Agro-intelligence** - crop knowledge + predictive analytics on top of the required modules.
+
+Detailed description of every module: [Project Charter → Feature List](docs/PROJECT_CHARTER.md#5-feature-list-m1-m8)

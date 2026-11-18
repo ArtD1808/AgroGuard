@@ -51,13 +51,30 @@ Serik Abenov is a 42-year-old commercial farmer who runs three polycarbonate gre
 
 ## 4. Direction (Track)
 
-_To be added by Nurdaulet Zhumabay._
+**Chosen Track: Agro-intelligence**
+
+**Why we chose this track:**
+- Serik’s biggest financial risk is agronomic: heat stress on specific crops, not a lack of buttons.
+- Agro-intelligence lets us add real crop knowledge (Crop Profiles) and predictive analytics (Heat Guard) on top of the 8 required modules.
+- It works purely with data from PostgreSQL, without extra hardware, so it can be fully demonstrated and tested.
+- It turns AgroGuard from a passive remote control into an assistant that makes decisions for a busy farmer.
 
 ---
 
 ## 5. Feature List (M1-M8)
 
-_To be added by Nurdaulet Zhumabay._
+| # | Module | How it works in AgroGuard |
+|---|---|---|
+| **M1** | **Authentication** | Serik registers and logs in with username + password (bcrypt hash, JWT token); every greenhouse has an owner_id, so a second test farmer account sees only its own greenhouses and gets 404 for Serik’s. |
+| **M2** | **Dashboard** | For each of Serik’s 3 greenhouses it shows 4 parameters - air temperature, air humidity, soil moisture, light - plus last update time, a status banner (OK / Attention / Critical) and the Heat Guard forecast, refreshed every 3 s. |
+| **M3** | **Remote Control** | 4 devices per greenhouse - irrigation, ventilation (vents + fan), phyto-lamps, heating - are switched from the app; the new state is saved in PostgreSQL in < 1 s, confirmed in the UI and logged in device_events. |
+| **M4** | **Operating Modes** | Auto / Manual switch per greenhouse; in Auto the FastAPI background loop applies Crop Profile rules (soil moisture < 40% → irrigation for 10 min, Heat Guard critical → open vents), tested by UPDATE-ing values in the PostgreSQL console instead of a simulator. |
+| **M5** | **Notifications** | When a value changed in the PostgreSQL console leaves the profile range (e.g. air temperature = 45 °C) or Heat Guard predicts overheating, a warning / critical alert appears, closes itself when values normalise, and a tap opens device control. |
+| **M6** | **History and Charts** | The sensor_readings table stores 8+ days of seeded history for all 4 parameters; the app draws temperature and soil-moisture charts for Day / Week / Month with threshold lines and highlighted too-hot / too-dry periods. |
+| **M7** | **Settings** | Serik selects a Crop Profile per greenhouse and edits min/max for all 4 parameters, irrigation duration, light hours and °C / °F; client and server validation reject impossible values such as -50% humidity or min > max. |
+| **M8** | **Failure Handling** | If the internet drops or the FastAPI server is stopped, the app shows a red “No connection to greenhouse” banner with the last known values, does not crash, blocks blind commands and reconnects automatically. |
+
+> No external simulator is used: sensor values live in PostgreSQL and are changed directly in the database console (psql / DBeaver) to demonstrate automation rules and alerts.
 
 ---
 
