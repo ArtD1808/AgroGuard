@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 880" width="1440" height="880">
+<defs>
+<marker id="arrN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 Z" fill="#1B5E20"/></marker>
+<marker id="arrNA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 Z" fill="#E67E22"/></marker>
+<marker id="arrNR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 Z" fill="#D32F2F"/></marker>
+</defs>
+<rect width="1440" height="880" fill="#F6F8F5"/>
+<rect x="0" y="0" width="1440" height="72" fill="#1B5E20"/>
+<text x="36" y="34" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">AgroGuard - Navigation Flow &amp; 4 Defense Scenarios</text>
+<text x="36" y="57" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" fill="#D5E8D7">8 Mobile Screens (.NET MAUI Shell + Bottom Tabs) + Error / Offline / Learning States</text>
+<rect x="36" y="170" width="236" height="175" rx="14" fill="#FFFFFF" stroke="#1B5E20" stroke-width="2"/>
+<rect x="36" y="170" width="236" height="38" rx="14" fill="#1B5E20"/>
+<rect x="36" y="196" width="236" height="12" fill="#1B5E20"/>
+<text x="48" y="194" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">01  Login (M1)</text>
+<text x="48" y="227" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Email/Username + Password</text>
+<text x="48" y="244" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- JWT auth (Serik account)</text>
+<text x="48" y="261" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Error state: red inline alert</text>
+<text x="48" y="278" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- &quot;Неверный логин или пароль&quot;</text>
+<text x="48" y="295" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Demo quick-fill button</text>
+<rect x="228" y="319" width="30" height="19" rx="9" fill="#1B5E20"/>
+<text x="243" y="332" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#FFFFFF">S1</text>
+<rect x="36" y="445" width="236" height="165" rx="14" fill="#FFFFFF" stroke="#D32F2F" stroke-width="2"/>
+<rect x="36" y="445" width="236" height="38" rx="14" fill="#D32F2F"/>
+<rect x="36" y="471" width="236" height="12" fill="#D32F2F"/>
+<text x="48" y="469" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">03  Offline State (M8)</text>
+<text x="48" y="502" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Red banner &quot;Нет связи&quot;</text>
+<text x="48" y="519" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Cached last sensor values</text>
+<text x="48" y="536" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Action buttons locked</text>
+<text x="48" y="553" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Button &quot;Повторить&quot;</text>
+<text x="48" y="570" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- No crash on server drop</text>
+<rect x="336" y="96" width="1068" height="534" rx="18" fill="#EDF3EE" stroke="#C8D6CA" stroke-width="1.8" stroke-dasharray="7,4"/>
+<text x="356" y="119" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="800" fill="#1B5E20">AUTHENTICATED SHELL (4 BOTTOM TABS)</text>
+<rect x="362" y="140" width="296" height="195" rx="14" fill="#FFFFFF" stroke="#1B5E20" stroke-width="2"/>
+<rect x="362" y="140" width="296" height="38" rx="14" fill="#1B5E20"/>
+<rect x="362" y="166" width="296" height="12" fill="#1B5E20"/>
+<text x="374" y="164" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">02  Dashboard (M2)</text>
+<text x="374" y="197" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- 3 greenhouses selector pills</text>
+<text x="374" y="214" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- 5-sec status banner (Норма/Крит.)</text>
+<text x="374" y="231" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- 4 sensor cards (Temp, Hum, Soil, Lux)</text>
+<text x="374" y="248" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Last update timestamp (3s poll)</text>
+<text x="374" y="265" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Compact Heat Guard widget</text>
+<text x="374" y="282" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Header gear -&gt; Settings (08)</text>
+<rect x="614" y="309" width="30" height="19" rx="9" fill="#D32F2F"/>
+<text x="629" y="322" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#FFFFFF">S2</text>
+<rect x="576" y="309" width="30" height="19" rx="9" fill="#1B5E20"/>
+<text x="591" y="322" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#FFFFFF">S1</text>
+<rect x="728" y="140" width="304" height="195" rx="14" fill="#FFFFFF" stroke="#E67E22" stroke-width="2"/>
+<rect x="728" y="140" width="304" height="38" rx="14" fill="#E67E22"/>
+<rect x="728" y="166" width="304" height="12" fill="#E67E22"/>
+<text x="740" y="164" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">04  Heat Guard (Signature)</text>
+<text x="740" y="197" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- 2h linear regression chart</text>
+<text x="740" y="214" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- T_max threshold line + ETA</text>
+<text x="740" y="231" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Heating rate (+C/min) + R^2</text>
+<text x="740" y="248" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- CTA &quot;Открыть вентиляцию&quot; -&gt; 05</text>
+<text x="740" y="265" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Toggle: Learning mode state</text>
+<text x="740" y="282" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- (45/120 min, T_max - 2 C)</text>
+<rect x="988" y="309" width="30" height="19" rx="9" fill="#D32F2F"/>
+<text x="1003" y="322" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#FFFFFF">S2</text>
+<rect x="1096" y="140" width="284" height="195" rx="14" fill="#FFFFFF" stroke="#2E7D32" stroke-width="2"/>
+<rect x="1096" y="140" width="284" height="38" rx="14" fill="#2E7D32"/>
+<rect x="1096" y="166" width="284" height="12" fill="#2E7D32"/>
+<text x="1108" y="164" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">08  Settings &amp; Profiles (M7)</text>
+<text x="1108" y="197" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- 4 Crop Profiles (1-tap preset)</text>
+<text x="1108" y="214" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Min/max for 4 parameters</text>
+<text x="1108" y="231" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Watering dur. + light schedule</text>
+<text x="1108" y="248" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Units C/F + Language RU/KZ</text>
+<text x="1108" y="265" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Validation (-50% blocked)</text>
+<text x="1108" y="282" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Logout -&gt; Login (01)</text>
+<rect x="1336" y="309" width="30" height="19" rx="9" fill="#E67E22"/>
+<text x="1351" y="322" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#FFFFFF">S3</text>
+<rect x="362" y="412" width="312" height="195" rx="14" fill="#FFFFFF" stroke="#1B5E20" stroke-width="2"/>
+<rect x="362" y="412" width="312" height="38" rx="14" fill="#1B5E20"/>
+<rect x="362" y="438" width="312" height="12" fill="#1B5E20"/>
+<text x="374" y="436" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">05  Devices &amp; Modes (M3+M4)</text>
+<text x="374" y="469" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Auto / Manual mode toggle</text>
+<text x="374" y="486" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- 4 devices: Полив, Вентиляция,</text>
+<text x="374" y="503" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Фитолампы, Обогрев (ON/OFF)</text>
+<text x="374" y="520" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Instant feedback (&lt; 1 sec)</text>
+<text x="374" y="537" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Vent ON -&gt; demo temp drops</text>
+<text x="374" y="554" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Recent command audit log</text>
+<rect x="630" y="581" width="30" height="19" rx="9" fill="#E67E22"/>
+<text x="645" y="594" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#FFFFFF">S3</text>
+<rect x="592" y="581" width="30" height="19" rx="9" fill="#D32F2F"/>
+<text x="607" y="594" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#FFFFFF">S2</text>
+<rect x="734" y="412" width="298" height="195" rx="14" fill="#FFFFFF" stroke="#D32F2F" stroke-width="2"/>
+<rect x="734" y="412" width="298" height="38" rx="14" fill="#D32F2F"/>
+<rect x="734" y="438" width="298" height="12" fill="#D32F2F"/>
+<text x="746" y="436" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">06  Alerts (M5)</text>
+<text x="746" y="469" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Critical &amp; Warning list</text>
+<text x="746" y="486" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Heat Guard 2h forecast alerts</text>
+<text x="746" y="503" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Filter: Active / Resolved</text>
+<text x="746" y="520" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Tap alert -&gt; jumps straight to</text>
+<text x="746" y="537" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- 05 Devices of that greenhouse</text>
+<rect x="988" y="581" width="30" height="19" rx="9" fill="#D32F2F"/>
+<text x="1003" y="594" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#FFFFFF">S2</text>
+<rect x="1092" y="412" width="288" height="195" rx="14" fill="#FFFFFF" stroke="#1565C0" stroke-width="2"/>
+<rect x="1092" y="412" width="288" height="38" rx="14" fill="#1565C0"/>
+<rect x="1092" y="438" width="288" height="12" fill="#1565C0"/>
+<text x="1104" y="436" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">07  History &amp; Charts (M6)</text>
+<text x="1104" y="469" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Period: День / Неделя / Месяц</text>
+<text x="1104" y="486" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Chart 1: Air Temperature</text>
+<text x="1104" y="503" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Chart 2: Soil Moisture</text>
+<text x="1104" y="520" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Dashed threshold lines</text>
+<text x="1104" y="537" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#1A1F1C">- Red dry-soil zone highlighted</text>
+<rect x="1336" y="581" width="30" height="19" rx="9" fill="#1565C0"/>
+<text x="1351" y="594" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#FFFFFF">S4</text>
+<line x1="272" y1="238" x2="358" y2="238" stroke="#1B5E20" stroke-width="2.5" marker-end="url(#arrN)"/>
+<text x="315" y="229" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1B5E20">JWT OK</text>
+<path d="M362 290 L304 290 L304 525 L276 525" fill="none" stroke="#D32F2F" stroke-width="2.2" stroke-dasharray="5,3" marker-end="url(#arrNR)"/>
+<text x="304" y="408" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#D32F2F" transform="rotate(-90 296 408)">Network / API lost</text>
+<path d="M272 560 L320 560 L320 315 L358 315" fill="none" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrN)"/>
+<line x1="658" y1="235" x2="724" y2="235" stroke="#E67E22" stroke-width="2.5" marker-end="url(#arrNA)"/>
+<text x="691" y="226" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#E67E22">Tap widget</text>
+<path d="M840 335 L840 368 L590 368 L590 408" fill="none" stroke="#E67E22" stroke-width="2.5" marker-end="url(#arrNA)"/>
+<rect x="624" y="354" width="188" height="22" rx="11" fill="#FDF2E6" stroke="#E67E22" stroke-width="1"/>
+<text x="718" y="369" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#9A4D06">CTA "Открыть вентиляцию"</text>
+<line x1="734" y1="510" x2="678" y2="510" stroke="#D32F2F" stroke-width="2.5" marker-end="url(#arrNR)"/>
+<text x="706" y="499" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#D32F2F">Tap</text>
+<text x="706" y="527" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#D32F2F">alert</text>
+<line x1="460" y1="335" x2="460" y2="408" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrN)" marker-start="url(#arrN)"/>
+<text x="415" y="376" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1B5E20">Tabs</text>
+<path d="M620 140 L620 116 L1238 116 L1238 136" fill="none" stroke="#1B5E20" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrN)"/>
+<rect x="830" y="105" width="210" height="22" rx="11" fill="#E8F1E9" stroke="#1B5E20" stroke-width="1.2"/>
+<text x="935" y="120" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#1B5E20">Header Gear -> Settings (M7)</text>
+<line x1="1032" y1="510" x2="1088" y2="510" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrN)" marker-start="url(#arrN)"/>
+<text x="1060" y="501" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#1B5E20">Tabs</text>
+<line x1="1238" y1="335" x2="1238" y2="408" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrN)" marker-start="url(#arrN)"/>
+<rect x="36" y="652" width="1368" height="202" rx="14" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="36" y="652" width="1368" height="36" rx="14" fill="#1B5E20"/>
+<rect x="36" y="674" width="1368" height="14" fill="#1B5E20"/>
+<text x="54" y="675" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF">4 KEY DEFENSE SCENARIOS (Implemented as 1-Click Walkthroughs in prototype/index.html)</text>
+<rect x="54" y="702" width="318" height="136" rx="10" fill="#F6F8F5" stroke="#1B5E20" stroke-width="1.6"/>
+<rect x="66" y="714" width="36" height="24" rx="12" fill="#1B5E20"/>
+<text x="84" y="730" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">S1</text>
+<text x="110" y="731" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#1A1F1C">Оценка за 5 секунд</text>
+<text x="66" y="760" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.8" font-weight="700" fill="#1B5E20">01 Login -&gt; 02 Dashboard</text>
+<text x="66" y="788" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#526056">Выбор из 3 теплиц Серика,</text>
+<text x="66" y="807" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#526056">цветной статус-баннер + 4 датчика</text>
+<rect x="392" y="702" width="318" height="136" rx="10" fill="#F6F8F5" stroke="#D32F2F" stroke-width="1.6"/>
+<rect x="404" y="714" width="36" height="24" rx="12" fill="#D32F2F"/>
+<text x="422" y="730" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">S2</text>
+<text x="448" y="731" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#1A1F1C">Алерт перегрева -&gt; Охлаждение</text>
+<text x="404" y="760" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.8" font-weight="700" fill="#D32F2F">06 Alerts / 04 Heat Guard -&gt; 05 Devices</text>
+<text x="404" y="788" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#526056">Тап по алерту перегрева -&gt;</text>
+<text x="404" y="807" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#526056">Вентиляция ON -&gt; temp падает</text>
+<rect x="730" y="702" width="318" height="136" rx="10" fill="#F6F8F5" stroke="#E67E22" stroke-width="1.6"/>
+<rect x="742" y="714" width="36" height="24" rx="12" fill="#E67E22"/>
+<text x="760" y="730" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">S3</text>
+<text x="786" y="731" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#1A1F1C">Автополив перед выходными</text>
+<text x="742" y="760" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.8" font-weight="700" fill="#E67E22">05 Devices (Auto) -&gt; 08 Settings</text>
+<text x="742" y="788" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#526056">Режим Auto + Crop Profile</text>
+<text x="742" y="807" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#526056">Томаты + длительность полива</text>
+<rect x="1068" y="702" width="318" height="136" rx="10" fill="#F6F8F5" stroke="#1565C0" stroke-width="1.6"/>
+<rect x="1080" y="714" width="36" height="24" rx="12" fill="#1565C0"/>
+<text x="1098" y="730" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">S4</text>
+<text x="1124" y="731" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#1A1F1C">Поиск сухого периода</text>
+<text x="1080" y="760" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.8" font-weight="700" fill="#1565C0">07 History &amp; Charts (Неделя)</text>
+<text x="1080" y="788" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#526056">График влажности почвы +</text>
+<text x="1080" y="807" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#526056">красная зона нехватки воды</text>
+</svg>
