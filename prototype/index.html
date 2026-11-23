@@ -1,0 +1,1629 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgroGuard - Интерактивный прототип (Неделя 2)</title>
+<style>
+:root {
+  --green: #1B5E20;
+  --green-dark: #144718;
+  --green-soft: #E8F1E9;
+  --bg: #F6F8F5;
+  --card: #FFFFFF;
+  --text: #1A1F1C;
+  --muted: #526056;
+  --border: #D5E0D6;
+  --amber: #E67E22;
+  --amber-soft: #FDF2E6;
+  --red: #D32F2F;
+  --red-soft: #FDECEC;
+  --radius: 16px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: Inter, Manrope, "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  color: var(--text);
+  background: #E4ECE5;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 28px;
+}
+.demo-bar {
+  width: 100%;
+  background: #144718;
+  color: #FFF;
+  padding: 10px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.14);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.demo-bar.collapsed .demo-items { display: none; }
+.demo-items { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; }
+.demo-label { font-size: 12px; font-weight: 800; color: #C8E6C9; margin-right: 4px; }
+.demo-btn {
+  border: 1px solid rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.12);
+  color: #FFF;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.demo-btn:hover { background: rgba(255,255,255,0.24); }
+.demo-btn.sc-active { background: #E67E22; border-color: #E67E22; color: #FFF; }
+.demo-btn.collapse-btn { background: #0E3311; border-color: rgba(255,255,255,0.35); }
+.scenario-hint {
+  max-width: 720px;
+  margin: 12px 14px 0;
+  background: #FFF;
+  border: 1.5px solid #1B5E20;
+  border-radius: 12px;
+  padding: 9px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #1A1F1C;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.scenario-hint.show { display: flex; }
+.phone-shell {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 42px;
+  background: #1A1F1C;
+  box-shadow: 0 22px 54px rgba(20, 42, 24, 0.28);
+}
+.phone {
+  width: 390px;
+  height: 844px;
+  background: var(--bg);
+  border-radius: 32px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.status-bar {
+  height: 36px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--card);
+  flex-shrink: 0;
+}
+.app-header {
+  background: var(--card);
+  padding: 10px 16px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.brand-row { display: flex; align-items: center; gap: 10px; }
+.brand-title { font-size: 18px; font-weight: 800; letter-spacing: -0.4px; }
+.brand-title span { color: var(--green); }
+.header-sub { font-size: 11px; color: var(--muted); font-weight: 600; }
+.icon-btn {
+  width: 40px; height: 40px; border-radius: 12px; border: 1.5px solid var(--border);
+  background: var(--bg); color: var(--text); display: inline-flex; align-items: center;
+  justify-content: center; cursor: pointer; font-size: 18px; font-weight: 700;
+}
+.icon-btn:active { background: var(--green-soft); }
+.scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 14px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.scroll > * { flex-shrink: 0; }
+.scroll::-webkit-scrollbar { width: 4px; }
+.scroll::-webkit-scrollbar-thumb { background: #C2D0C4; border-radius: 4px; }
+.card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+.gh-tabs { display: flex; gap: 6px; padding-bottom: 2px; flex-shrink: 0; }
+.gh-pill {
+  flex: 1; min-width: 0; min-height: 38px; padding: 8px 6px; border-radius: 12px;
+  border: 1.5px solid var(--border); background: var(--card); cursor: pointer;
+  font-size: 12px; font-weight: 700; color: var(--muted);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  white-space: nowrap;
+}
+.gh-pill.active { background: var(--green); border-color: var(--green); color: #FFF; }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot-ok { background: #2E7D32; }
+.dot-warn { background: var(--amber); }
+.dot-crit { background: var(--red); }
+.gh-pill.active .dot-ok { background: #A5D6A7; }
+.banner {
+  border-radius: var(--radius); padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.banner-ok { background: var(--green); color: #FFF; }
+.banner-warn { background: var(--amber); color: #FFF; }
+.banner-crit { background: var(--red); color: #FFF; }
+.banner-title { font-size: 17px; font-weight: 800; }
+.banner-sub { font-size: 12px; opacity: 0.94; margin-top: 2px; }
+.banner-badge {
+  padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,0.22);
+  font-size: 11px; font-weight: 800; white-space: nowrap;
+}
+.sensor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sensor-card {
+  background: var(--card); border: 1.5px solid var(--border); border-radius: 14px;
+  padding: 12px 13px; display: flex; flex-direction: column; gap: 4px;
+}
+.sensor-card.warn { border-color: var(--amber); background: var(--amber-soft); }
+.sensor-card.crit { border-color: var(--red); background: var(--red-soft); }
+.sensor-label { font-size: 12px; font-weight: 700; color: var(--muted); display: flex; justify-content: space-between; }
+.sensor-val { font-size: 27px; font-weight: 800; letter-spacing: -0.6px; color: var(--text); }
+.sensor-card.crit .sensor-val { color: var(--red); }
+.sensor-card.warn .sensor-val { color: #A04D05; }
+.sensor-range { font-size: 11px; color: var(--muted); font-weight: 600; }
+.hg-widget {
+  border-radius: var(--radius); padding: 14px; cursor: pointer;
+  border: 2px solid var(--amber); background: var(--amber-soft);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.hg-widget.crit { border-color: var(--red); background: var(--red-soft); }
+.hg-widget.ok { border-color: var(--green); background: var(--green-soft); }
+.hg-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.hg-title { font-size: 14px; font-weight: 800; color: var(--text); }
+.pill-tag {
+  font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 999px; color: #FFF; white-space: nowrap;
+}
+.tag-crit { background: var(--red); }
+.tag-warn { background: var(--amber); }
+.tag-ok { background: var(--green); }
+.btn {
+  width: 100%; min-height: 48px; border-radius: 14px; border: none;
+  font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 16px;
+}
+.btn-primary { background: var(--green); color: #FFF; }
+.btn-danger { background: var(--red); color: #FFF; }
+.btn-outline { background: var(--card); color: var(--green); border: 2px solid var(--green); }
+.btn-disabled { background: #DCE2DD; color: #7C887F; cursor: not-allowed; }
+.tab-bar {
+  height: 68px; background: var(--card); border-top: 1.5px solid var(--border);
+  display: grid; grid-template-columns: repeat(4, 1fr); flex-shrink: 0;
+  padding: 6px 4px 8px;
+}
+.tab-item {
+  border: none; background: transparent; cursor: pointer; font-family: inherit;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px; color: var(--muted); font-size: 11px; font-weight: 700; position: relative;
+}
+.tab-item.active { color: var(--green); }
+.tab-item.active .tab-ico { background: var(--green-soft); color: var(--green); }
+.tab-ico {
+  width: 36px; height: 26px; border-radius: 13px; display: flex; align-items: center;
+  justify-content: center; font-size: 15px; font-weight: 800;
+}
+.tab-badge {
+  position: absolute; top: 2px; right: 18px; min-width: 18px; height: 18px;
+  border-radius: 9px; background: var(--red); color: #FFF; font-size: 10px;
+  font-weight: 800; display: flex; align-items: center; justify-content: center; padding: 0 4px;
+}
+.seg {
+  display: grid; grid-template-columns: 1fr 1fr; background: #E5ECE6;
+  padding: 4px; border-radius: 14px; gap: 4px;
+}
+.seg-3 { grid-template-columns: 1fr 1fr 1fr; }
+.seg-btn {
+  min-height: 40px; border: none; border-radius: 10px; background: transparent;
+  font-family: inherit; font-size: 12.5px; font-weight: 800; color: var(--muted); cursor: pointer;
+}
+.seg-btn.active { background: var(--green); color: #FFF; box-shadow: 0 2px 6px rgba(27,94,32,0.22); }
+.device-card {
+  background: var(--card); border: 1.5px solid var(--border); border-radius: 14px;
+  padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.device-card.on { border-color: var(--green); background: var(--green-soft); }
+.device-card.highlight { border-color: var(--red); box-shadow: 0 0 0 3px rgba(211,47,47,0.18); }
+.dev-name { font-size: 14.5px; font-weight: 800; }
+.dev-meta { font-size: 11.5px; color: var(--muted); font-weight: 600; margin-top: 2px; }
+.toggle-btn {
+  min-width: 74px; height: 40px; border-radius: 20px; border: none; cursor: pointer;
+  font-family: inherit; font-size: 13px; font-weight: 800; flex-shrink: 0;
+}
+.toggle-btn.on { background: var(--green); color: #FFF; }
+.toggle-btn.off { background: #DDE4DE; color: var(--text); }
+.alert-card {
+  background: var(--card); border-radius: 14px; padding: 13px 14px; cursor: pointer;
+  border: 1.5px solid var(--border); border-left: 5px solid var(--amber);
+  display: flex; flex-direction: column; gap: 5px;
+}
+.alert-card.crit { border-left-color: var(--red); background: var(--red-soft); }
+.alert-card.resolved { border-left-color: var(--green); opacity: 0.78; }
+.field-label { font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 4px; display: block; }
+.input {
+  width: 100%; height: 44px; border-radius: 12px; border: 1.5px solid var(--border);
+  padding: 0 12px; font-family: inherit; font-size: 15px; font-weight: 700;
+  color: var(--text); background: var(--card);
+}
+.input:focus { outline: none; border-color: var(--green); }
+.input.err { border-color: var(--red); background: var(--red-soft); color: var(--red); }
+.err-box {
+  background: var(--red-soft); border: 1.5px solid var(--red); color: var(--red);
+  border-radius: 12px; padding: 10px 12px; font-size: 12.5px; font-weight: 700;
+}
+.ok-box {
+  background: var(--green-soft); border: 1.5px solid var(--green); color: var(--green);
+  border-radius: 12px; padding: 10px 12px; font-size: 12.5px; font-weight: 700;
+}
+.warn-box {
+  background: var(--amber-soft); border: 1.5px solid var(--amber); color: #9A4D06;
+  border-radius: 12px; padding: 10px 12px; font-size: 12.5px; font-weight: 700;
+}
+.muted-row { font-size: 11.5px; color: var(--muted); font-weight: 600; display: flex; justify-content: space-between; gap: 8px; }
+.chip-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.chip {
+  min-height: 44px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--card);
+  font-family: inherit; font-size: 13px; font-weight: 800; color: var(--text); cursor: pointer;
+  padding: 8px; text-align: left;
+}
+.chip.active { border-color: var(--green); background: var(--green-soft); color: var(--green); }
+.chip small { display: block; font-size: 10.5px; font-weight: 600; color: var(--muted); margin-top: 2px; }
+.log-row {
+  display: flex; justify-content: space-between; align-items: center; font-size: 12px;
+  padding: 7px 0; border-bottom: 1px solid #E8EEE9; gap: 8px;
+}
+.log-row:last-child { border-bottom: none; }
+.dimmed { opacity: 0.55; }
+.toast {
+  position: absolute;
+  bottom: 80px;
+  left: 16px;
+  right: 16px;
+  background: #1A1F1C;
+  color: #FFF;
+  padding: 11px 14px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 30;
+  text-align: center;
+}
+.toast.show { opacity: 0.96; }
+.progress-track { width: 100%; height: 12px; background: #DCE6DD; border-radius: 999px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--amber); border-radius: 999px; width: 37.5%; }
+</style>
+</head>
+<body>
+
+<div class="demo-bar" id="demoBar">
+  <span class="demo-label">Демо-сценарии защиты:</span>
+  <div class="demo-items">
+    <button class="demo-btn sc-active" id="btnSc1" onclick="runScenario(1)">1. Оценка за 5 сек</button>
+    <button class="demo-btn" id="btnSc2" onclick="runScenario(2)">2. Алерт перегрева -&gt; Вентиляция</button>
+    <button class="demo-btn" id="btnSc3" onclick="runScenario(3)">3. Auto + автополив</button>
+    <button class="demo-btn" id="btnSc4" onclick="runScenario(4)">4. График за неделю</button>
+    <span style="opacity:0.4;">|</span>
+    <button class="demo-btn" id="btnLogin" onclick="openDemoShortcut('login')">Login</button>
+    <button class="demo-btn" id="btnOffline" onclick="openDemoShortcut('offline')">Offline (M8)</button>
+    <button class="demo-btn" id="btnLearning" onclick="openDemoShortcut('learning')">Learning Mode</button>
+  </div>
+  <button class="demo-btn collapse-btn" id="collapseBtn" onclick="toggleDemoBar()">Свернуть</button>
+</div>
+
+<div class="scenario-hint" id="scenarioHint">
+  <span id="scenarioHintText"></span>
+  <button class="demo-btn" style="background:#1B5E20; border-color:#1B5E20;" onclick="hideHint()">OK</button>
+</div>
+
+<div class="phone-shell">
+  <div class="phone" id="app"></div>
+</div>
+
+<script>
+const LOGO_SM = `<svg viewBox="0 0 128 128" width="32" height="32" aria-hidden="true">
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="#F6F8F5" stroke="#1B5E20" stroke-width="4"/>
+  <path d="M64 16 L104 34 L104 64 C104 89 87 104 64 113 C41 104 24 89 24 64 L24 34 Z" fill="#1B5E20"/>
+  <path d="M64 26 L94 40 L94 63 C94 82 81 95 64 103 C47 95 34 82 34 63 L34 40 Z" fill="none" stroke="#F6F8F5" stroke-opacity="0.28" stroke-width="2.5"/>
+  <path d="M64 88 C47 84 40 70 43 52 C53 53 60 60 64 71 C68 60 75 53 85 52 C88 70 81 84 64 88 Z" fill="#F6F8F5"/>
+  <rect x="60.5" y="34" width="7" height="42" rx="3.5" fill="#1B5E20"/>
+  <rect x="62" y="38" width="4" height="36" rx="2" fill="#E67E22"/>
+  <circle cx="64" cy="79" r="7.5" fill="#1B5E20"/>
+  <circle cx="64" cy="79" r="4.8" fill="#E67E22"/>
+  <circle cx="64" cy="79" r="2" fill="#F6F8F5"/>
+  <path d="M54 31 Q64 24 74 31" fill="none" stroke="#E67E22" stroke-width="3.2" stroke-linecap="round"/>
+</svg>`;
+const LOGO_LG = LOGO_SM.replace('width="32" height="32"', 'width="68" height="68"');
+
+const PROFILES = {
+  tomatoes:     { RU: "Томаты",   KZ: "Қызанақ",  tempMin: 18, tempMax: 30, humMin: 55, humMax: 75, soilMin: 45, soilMax: 70, luxMin: 8000, waterMin: 10, light: "06:00 - 20:00" },
+  cucumbers:    { RU: "Огурцы",   KZ: "Қияр",     tempMin: 20, tempMax: 32, humMin: 65, humMax: 85, soilMin: 55, soilMax: 80, luxMin: 9000, waterMin: 12, light: "06:00 - 20:00" },
+  strawberries: { RU: "Клубника", KZ: "Құлпынай", tempMin: 16, tempMax: 26, humMin: 55, humMax: 70, soilMin: 50, soilMax: 75, luxMin: 7500, waterMin: 8,  light: "07:00 - 19:00" },
+  greens:       { RU: "Зелень",   KZ: "Көкөніс",  tempMin: 15, tempMax: 24, humMin: 50, humMax: 70, soilMin: 50, soilMax: 70, luxMin: 6500, waterMin: 6,  light: "07:00 - 19:00" },
+};
+
+const I18N = {
+  RU: {
+    noNet: "Нет сети",
+    ghWord: "Теплица",
+    ghShort: "Т",
+    farmerSub: "Серик Абенов - Атырау",
+    tabHome: "Главная",
+    tabDevices: "Устройства",
+    tabAlerts: "Алерты",
+    tabHistory: "История",
+    settingsTitle: "Настройки и профили",
+    // Login
+    loginTagline: "Контроль теплиц и защита от перегрева за 2 часа",
+    loginHeading: "Вход в аккаунт",
+    loginUser: "Логин фермера",
+    loginPass: "Пароль",
+    loginErr: "Неверный логин или пароль. Проверьте данные и повторите попытку.",
+    loginBtn: "Войти",
+    loginTestErr: "Показать ошибку входа",
+    farmCardTitle: "Хозяйство: ИП Серик Абенов (Атырау)",
+    farmCardSub: "3 поликарбонатные теплицы (~1 500 м2) - Томаты и Огурцы",
+    welcomeToast: "Добро пожаловать, Серик Абенов",
+    // Dashboard
+    updatedPrefix: "Обновлено:",
+    secAgo: "с назад",
+    minAgo: "мин назад",
+    modeAutoShort: "Авто",
+    modeManualShort: "Ручной",
+    profileWord: "Профиль",
+    statusOkTitle: "Все в норме",
+    statusOkSub: (crop) => "Микроклимат в пределах профиля " + crop,
+    statusWarnTitle: (eta) => "Внимание: перегрев через " + eta + " мин",
+    statusCritTitle: (tStr) => "Критично: " + tStr,
+    statusExceededSub: (tMaxStr, diff) => "Порог " + tMaxStr + " превышен (+" + diff + " °C)",
+    sensorAirTemp: "Темп. воздуха",
+    sensorAirHum: "Влажн. воздуха",
+    sensorSoil: "Влажн. почвы",
+    sensorLight: "Освещенность",
+    normWord: "Норма",
+    luxUnit: "лк",
+    hgWidgetTitle: "Heat Guard - Прогноз на 2 часа",
+    hgSafeTag: "Безопасно",
+    hgSafeText: (slope, r2) => "Перегрев в ближайшие 2 часа не ожидается (+" + slope + " °C/мин, R2 = " + r2 + ")",
+    hgExceededText: (tMaxStr, diff) => "Порог " + tMaxStr + " превышен (+" + diff + " °C). Требуется немедленное охлаждение.",
+    hgEtaText: (tMaxStr, eta, slope, t2hStr, r2) => "Перегрев выше " + tMaxStr + " через " + eta + " мин (+" + slope + " °C/мин, прогноз +2 ч: " + t2hStr + ", R2 = " + r2 + ")",
+    hgActionChart: "Нажмите для графика регрессии",
+    hgActionOpenNow: "Откройте вентиляцию сейчас",
+    hgActionRecommend: "Рекомендуется открыть вентиляцию",
+    detailsLink: "Подробнее",
+    all3Title: "Все 3 теплицы Серика",
+    shortOk: "Норма",
+    shortWarn: "Внимание",
+    // Offline
+    offlineSub: "Офлайн-режим",
+    offlineTitle: "Нет связи с теплицей",
+    offlineHint: "Показаны последние известные данные",
+    cacheWord: "Кэш",
+    offlineLockTitle: "Кнопки управления заблокированы",
+    offlineLockDesc: "Чтобы избежать слепых команд, управление недоступно до восстановления связи. Автоматика на сервере продолжает защищать теплицы.",
+    offlineLockedBtn: "Открыть вентиляцию (нет связи)",
+    retryBtn: "Повторить",
+    reconnectedToast: "Связь восстановлена",
+    // Heat Guard detail
+    hgTabForecast: "Прогноз (2 ч)",
+    hgTabLearning: "Learning mode",
+    hgRiskSafe: "Риск: Безопасно",
+    hgRiskCrit: "Риск: Критично (< 30 мин)",
+    hgSubExceeded: (tStr) => "Текущая температура " + tStr + " - требуется охлаждение",
+    hgSubForecast: (tNowStr, t2hStr, tMax) => "Сейчас " + tNowStr + " - прогноз +2 ч: " + t2hStr + " (порог " + tMax + " °C)",
+    hgBadgeOk: "Норма",
+    hgEtaExceeded: "Превышен",
+    hgEtaNone: "Нет",
+    hgFormulaTitle: "Линейная регрессия T(t) = a + b*t",
+    hgWindow: "Окно: 2 ч",
+    hgMetricEta: "ETA до T_max",
+    hgMetricSlope: "Скорость",
+    hgMetricR2: "Точность R2",
+    hgSlopeUnit: "°C/м",
+    hgOpenVentBtn: "Открыть вентиляцию",
+    hgNow: "Сейчас",
+    hgAxisUnit: "ч",
+    hgMinUnit: "мин",
+    hgLearnSub: "Сбор данных для новой теплицы: 45 / 120 мин",
+    hgLearnProgTitle: "Накопление 2-часового окна",
+    hgLearnPoints: "9 из 24 точек",
+    hgLearnDesc: "Пока недостаточно точек для надежного прогноза (R2 >= 0.6), работает защитный режим по выбранному профилю культуры.",
+    hgLearnProfile: "Активен профиль:",
+    hgLearnMax: "Порог T_max:",
+    hgLearnFallback: "Резервное предупреждение: T_max - 2 °C",
+    hgLearnNext: "Как только соберутся 2 часа истории, Heat Guard автоматически переключится на полный прогноз.",
+    // Devices
+    devicesHeaderPrefix: "Управление - ",
+    modeAutoBtn: "Автоматический (Auto)",
+    modeManualBtn: "Ручной (Manual)",
+    modeAutoDesc: (soilMin, waterMin) => "Автоматика активна: полив при почве < " + soilMin + "% (" + waterMin + " мин), вентиляция по Heat Guard (ETA < 30 мин).",
+    modeManualDesc: "Ручной режим (Manual): автоматика отключена. Устройствами управляете вы вручную.",
+    devNames: { irrigation: "Полив (капельный)", ventilation: "Вентиляция (форточки + вент.)", lamps: "Фитолампы", heating: "Обогрев" },
+    devShort: { irrigation: "Полив", ventilation: "Вентиляция", lamps: "Фитолампы", heating: "Обогрев" },
+    devWaterMeta: (m) => "Автовыкл. через " + m + " мин",
+    devVentOn: (tStr) => "Охлаждение активно! Текущая: " + tStr,
+    devVentOff: (tStr) => "Выключена - Текущая темп.: " + tStr,
+    devLampsMeta: (s) => "Расписание " + s,
+    devHeatMeta: (t) => "Включается ниже " + t + " °C",
+    logTitle: "Журнал последних команд",
+    srcManual: "Вручную",
+    srcAuto: "Авто",
+    srcHG: "Heat Guard",
+    toastAutoHG: "Режим Auto: вентиляция открыта автоматически по Heat Guard",
+    toastAutoOn: "Режим Auto включен",
+    toastManualOn: "Режим Manual включен",
+    toastVentCooling: "Вентиляция включена - температура начинает снижаться",
+    toastDevState: (name, on) => name + ": " + (on ? "включено" : "выключено"),
+    logVentAuto: "Вентиляция ON (автоматически)",
+    logHGEta: "Heat Guard: перегрев через 24 мин",
+    logWaterAuto: (m) => "Полив ON (" + m + " мин)",
+    logLampsOn: "Фитолампы ON",
+    // Alerts
+    alertsSub: "Уведомления и тревоги",
+    filterActive: "Активные",
+    filterResolved: "Решенные",
+    filterAll: "Все",
+    noAlerts: "Активных тревог нет. Все 3 теплицы в безопасности.",
+    alertGoDevices: "Перейти к управлению",
+    tagCrit: "КРИТИЧНО - ПЕРЕГРЕВ",
+    tagWarn: "HEAT GUARD - 2 ЧАСА",
+    tagResolved: "РЕШЕНО",
+    yesterday: "Вчера, 09:15",
+    alert1Title: "Теплица 1 (Томаты): 36.2 °C",
+    alert1Desc: "Порог 30.0 °C превышен (+6.2 °C). Риск осыпания цветков томатов.",
+    alert2Title: "Теплица 1 (Томаты): перегрев через 24 мин",
+    alert2Desc: "Сейчас 27.6 °C, скорость +0.10 °C/мин (прогноз +2 ч: 39.6 °C, R2 = 0.91).",
+    alert3Title: "Теплица 2 (Огурцы): сухая почва 31%",
+    alert3Desc: "Автополив включился на 12 мин, влажность восстановилась до 64%.",
+    // History
+    historySub: "История и графики",
+    pDay: "День",
+    pWeek: "Неделя",
+    pMonth: "Месяц",
+    pDayMeta: "За 24 часа",
+    pWeekMeta: "Архив: 8 дней",
+    pMonthMeta: "За 30 дней",
+    chartTempTitle: "Температура воздуха",
+    chartSoilTitle: "Влажность почвы (%)",
+    peakWord: "Пик",
+    minWord: "Мин",
+    threshWord: "Порог",
+    dryBadge: "Нехватка воды",
+    dryShortBadge: "Снижение",
+    daysWeek: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
+    daysMonth: ["20 окт", "27 окт", "3 ноя", "10 ноя", "15 ноя", "19 ноя"],
+    dayPeakLbl: "16:00",
+    weekPeakLbl: "Чт",
+    monthPeakLbl: "15 ноя",
+    dayMinLbl: "08:00",
+    weekMinLbl: "Ср - Чт",
+    monthMinLbl: "15 ноя",
+    histSummaryDay: (soilMin) => "Кратковременное снижение влажности в 08:00 до 42% (порог " + soilMin + "%) - автополив восстановил норму до 62%.",
+    histSummaryWeek: (soilMin) => "Период нехватки воды: Ср 14:00 - Чт 09:00 (почва опускалась до 31% при минимальном пороге " + soilMin + "%).",
+    histSummaryMonth: (soilMin) => "За 30 дней зафиксировано 2 эпизода снижения ниже " + soilMin + "%: 27 окт (38%) и 14-15 ноя (31%).",
+    // Settings
+    cropProfileTitle: "Профиль культуры",
+    soilShort: "Почва",
+    thresholdsTitle: "Пороги",
+    testInvalidBtn: "Тест -50%",
+    lblTMin: "Темп. min (°C)",
+    lblTMax: "Темп. max (°C)",
+    lblSMin: "Почва min (%)",
+    lblWDur: "Длит. полива (мин)",
+    lblLightSched: "Расписание фитоламп",
+    errSoil: (v) => "Ошибка валидации: влажность почвы должна быть от 0% до 100% (введено " + v + "%).",
+    errTemp: "Ошибка валидации: минимальная температура должна быть меньше максимальной.",
+    errWater: "Ошибка валидации: длительность полива должна быть от 1 до 60 мин.",
+    savedBox: "Настройки и профиль сохранены.",
+    savedToast: "Настройки сохранены",
+    profileAppliedToast: (name) => "Применен профиль: " + name,
+    lblUnits: "Единицы темп.",
+    lblLang: "Язык (RU / KZ)",
+    saveBtn: "Сохранить настройки",
+    logoutBtn: "Выйти из аккаунта",
+  },
+  KZ: {
+    noNet: "Желі жоқ",
+    ghWord: "Жылыжай",
+    ghShort: "Ж",
+    farmerSub: "Серік Әбенов - Атырау",
+    tabHome: "Басты бет",
+    tabDevices: "Құрылғылар",
+    tabAlerts: "Дабылдар",
+    tabHistory: "Тарих",
+    settingsTitle: "Баптаулар және профильдер",
+    // Login
+    loginTagline: "Жылыжайларды бақылау және қызып кетуден 2 сағат бұрын қорғау",
+    loginHeading: "Аккаунтқа кіру",
+    loginUser: "Фермер логині",
+    loginPass: "Құпия сөз",
+    loginErr: "Логин немесе құпия сөз қате. Деректерді тексеріп қайталаңыз.",
+    loginBtn: "Кіру",
+    loginTestErr: "Кіру қатесін көрсету",
+    farmCardTitle: "Шаруашылық: ЖК Серік Әбенов (Атырау)",
+    farmCardSub: "3 поликарбонатты жылыжай (~1 500 м2) - Қызанақ пен Қияр",
+    welcomeToast: "Қош келдіңіз, Серік Әбенов",
+    // Dashboard
+    updatedPrefix: "Жаңартылды:",
+    secAgo: "с бұрын",
+    minAgo: "мин бұрын",
+    modeAutoShort: "Авто",
+    modeManualShort: "Қолмен",
+    profileWord: "Профиль",
+    statusOkTitle: "Барлығы қалыпты",
+    statusOkSub: (crop) => "Микроклимат " + crop + " профилі аясында",
+    statusWarnTitle: (eta) => "Назар: " + eta + " мин кейін қызады",
+    statusCritTitle: (tStr) => "Қауіпті: " + tStr,
+    statusExceededSub: (tMaxStr, diff) => "Шек " + tMaxStr + " асып кетті (+" + diff + " °C)",
+    sensorAirTemp: "Ауа темп.",
+    sensorAirHum: "Ауа ылғалд.",
+    sensorSoil: "Топырақ ылғ.",
+    sensorLight: "Жарықтық",
+    normWord: "Қалыпты",
+    luxUnit: "лк",
+    hgWidgetTitle: "Heat Guard - 2 сағатқа болжам",
+    hgSafeTag: "Қауіпсіз",
+    hgSafeText: (slope, r2) => "Алдағы 2 сағатта қызып кету күтілмейді (+" + slope + " °C/мин, R2 = " + r2 + ")",
+    hgExceededText: (tMaxStr, diff) => "Шек " + tMaxStr + " асып кетті (+" + diff + " °C). Шұғыл салқындату қажет.",
+    hgEtaText: (tMaxStr, eta, slope, t2hStr, r2) => tMaxStr + " шегінен " + eta + " мин кейін асады (+" + slope + " °C/мин, +2 сағ болжам: " + t2hStr + ", R2 = " + r2 + ")",
+    hgActionChart: "Регрессия графигін ашу",
+    hgActionOpenNow: "Желдетуді қазір ашыңыз",
+    hgActionRecommend: "Желдетуді ашу ұсынылады",
+    detailsLink: "Толығырақ",
+    all3Title: "Серіктің барлық 3 жылыжайы",
+    shortOk: "Қалыпты",
+    shortWarn: "Назар",
+    // Offline
+    offlineSub: "Офлайн режим",
+    offlineTitle: "Жылыжаймен байланыс жоқ",
+    offlineHint: "Соңғы белгілі деректер көрсетілді",
+    cacheWord: "Кэш",
+    offlineLockTitle: "Басқару түймелері бұғатталды",
+    offlineLockDesc: "Қате пәрмен бермеу үшін байланыс қалпына келгенше басқару жабық. Сервердегі автоматика жылыжайды қорғауды жалғастырады.",
+    offlineLockedBtn: "Желдетуді ашу (байланыс жоқ)",
+    retryBtn: "Қайталау",
+    reconnectedToast: "Байланыс қалпына келді",
+    // Heat Guard detail
+    hgTabForecast: "Болжам (2 сағ)",
+    hgTabLearning: "Learning mode",
+    hgRiskSafe: "Тәуекел: Қауіпсіз",
+    hgRiskCrit: "Тәуекел: Қауіпті (< 30 мин)",
+    hgSubExceeded: (tStr) => "Қазіргі температура " + tStr + " - салқындату қажет",
+    hgSubForecast: (tNowStr, t2hStr, tMax) => "Қазір " + tNowStr + " - +2 сағ болжам: " + t2hStr + " (шек " + tMax + " °C)",
+    hgBadgeOk: "Қалыпты",
+    hgEtaExceeded: "Асып кетті",
+    hgEtaNone: "Жоқ",
+    hgFormulaTitle: "Сызықтық регрессия T(t) = a + b*t",
+    hgWindow: "Терезе: 2 сағ",
+    hgMetricEta: "T_max дейін ETA",
+    hgMetricSlope: "Жылдамдық",
+    hgMetricR2: "Дәлдік R2",
+    hgSlopeUnit: "°C/м",
+    hgOpenVentBtn: "Желдетуді ашу",
+    hgNow: "Қазір",
+    hgAxisUnit: "с",
+    hgMinUnit: "мин",
+    hgLearnSub: "Жаңа жылыжай үшін деректер жинау: 45 / 120 мин",
+    hgLearnProgTitle: "2 сағаттық терезе жинау",
+    hgLearnPoints: "24 нүктенің 9-ы",
+    hgLearnDesc: "Сенімді болжамға (R2 >= 0.6) нүкте жетпегенше, таңдалған дақыл профилі бойынша қорғаныс режимі жұмыс істейді.",
+    hgLearnProfile: "Белсенді профиль:",
+    hgLearnMax: "T_max шегі:",
+    hgLearnFallback: "Қорғаныс ескертуі: T_max - 2 °C",
+    hgLearnNext: "2 сағаттық тарих жиналғанда Heat Guard автоматты түрде толық болжамға ауысады.",
+    // Devices
+    devicesHeaderPrefix: "Басқару - ",
+    modeAutoBtn: "Автоматты (Auto)",
+    modeManualBtn: "Қолмен (Manual)",
+    modeAutoDesc: (soilMin, waterMin) => "Автоматика қосулы: топырақ < " + soilMin + "% болса суару (" + waterMin + " мин), Heat Guard бойынша желдету (ETA < 30 мин).",
+    modeManualDesc: "Қолмен режим (Manual): автоматика өшірулі. Құрылғыларды өзіңіз басқарасыз.",
+    devNames: { irrigation: "Суару (тамшылатып)", ventilation: "Желдету (желдеткіш + терезе)", lamps: "Фитошамдар", heating: "Жылыту" },
+    devShort: { irrigation: "Суару", ventilation: "Желдету", lamps: "Фитошамдар", heating: "Жылыту" },
+    devWaterMeta: (m) => m + " мин кейін автосөндіру",
+    devVentOn: (tStr) => "Салқындату қосулы! Қазіргі: " + tStr,
+    devVentOff: (tStr) => "Өшірулі - Қазіргі темп.: " + tStr,
+    devLampsMeta: (s) => "Кесте " + s,
+    devHeatMeta: (t) => t + " °C төмен болса қосылады",
+    logTitle: "Соңғы пәрмендер журналы",
+    srcManual: "Қолмен",
+    srcAuto: "Авто",
+    srcHG: "Heat Guard",
+    toastAutoHG: "Auto режимі: Heat Guard желдетуді автоматты ашты",
+    toastAutoOn: "Auto режимі қосылды",
+    toastManualOn: "Manual режимі қосылды",
+    toastVentCooling: "Желдету қосылды - температура төмендей бастады",
+    toastDevState: (name, on) => name + ": " + (on ? "қосылды" : "өшірілді"),
+    logVentAuto: "Желдету ON (автоматты)",
+    logHGEta: "Heat Guard: 24 мин кейін қызады",
+    logWaterAuto: (m) => "Суару ON (" + m + " мин)",
+    logLampsOn: "Фитошамдар ON",
+    // Alerts
+    alertsSub: "Ескертулер мен дабылдар",
+    filterActive: "Белсенді",
+    filterResolved: "Шешілген",
+    filterAll: "Барлығы",
+    noAlerts: "Белсенді дабылдар жоқ. Барлық 3 жылыжай қауіпсіз.",
+    alertGoDevices: "Басқаруға өту",
+    tagCrit: "ҚАУІПТІ - ҚЫЗЫП КЕТУ",
+    tagWarn: "HEAT GUARD - 2 САҒАТ",
+    tagResolved: "ШЕШІЛДІ",
+    yesterday: "Кеше, 09:15",
+    alert1Title: "Жылыжай 1 (Қызанақ): 36.2 °C",
+    alert1Desc: "30.0 °C шегінен асып кетті (+6.2 °C). Қызанақ гүлдерінің түсу қаупі бар.",
+    alert2Title: "Жылыжай 1 (Қызанақ): 24 мин кейін қызады",
+    alert2Desc: "Қазір 27.6 °C, жылдамдық +0.10 °C/мин (+2 сағ болжам: 39.6 °C, R2 = 0.91).",
+    alert3Title: "Жылыжай 2 (Қияр): құрғақ топырақ 31%",
+    alert3Desc: "Автосуару 12 мин қосылып, ылғалдылық 64% деңгейіне оралды.",
+    // History
+    historySub: "Тарих және графиктер",
+    pDay: "Күн",
+    pWeek: "Апта",
+    pMonth: "Ай",
+    pDayMeta: "Соңғы 24 сағат",
+    pWeekMeta: "Мұрағат: 8 күн",
+    pMonthMeta: "Соңғы 30 күн",
+    chartTempTitle: "Ауа температурасы",
+    chartSoilTitle: "Топырақ ылғалдылығы (%)",
+    peakWord: "Шегі",
+    minWord: "Мин",
+    threshWord: "Шек",
+    dryBadge: "Су жетіспеуі",
+    dryShortBadge: "Төмендеу",
+    daysWeek: ["Дс", "Сс", "Ср", "Бс", "Жм", "Сб", "Жс"],
+    daysMonth: ["20 қаз", "27 қаз", "3 қар", "10 қар", "15 қар", "19 қар"],
+    dayPeakLbl: "16:00",
+    weekPeakLbl: "Бс",
+    monthPeakLbl: "15 қар",
+    dayMinLbl: "08:00",
+    weekMinLbl: "Ср - Бс",
+    monthMinLbl: "15 қар",
+    histSummaryDay: (soilMin) => "08:00-де топырақ ылғалдылығы 42%-ға дейін төмендеді (шек " + soilMin + "%) - автосуару 62%-ға қалпына келтірді.",
+    histSummaryWeek: (soilMin) => "Су жетіспеу кезеңі: Ср 14:00 - Бс 09:00 (топырақ 31%-ға дейін төмендеді, мин. шек " + soilMin + "%).",
+    histSummaryMonth: (soilMin) => "30 күнде " + soilMin + "% шегінен төмендеудің 2 жағдайы тіркелді: 27 қаз (38%) және 14-15 қар (31%).",
+    // Settings
+    cropProfileTitle: "Дақыл профилі",
+    soilShort: "Топырақ",
+    thresholdsTitle: "Шектер",
+    testInvalidBtn: "Тест -50%",
+    lblTMin: "Темп. min (°C)",
+    lblTMax: "Темп. max (°C)",
+    lblSMin: "Топырақ min (%)",
+    lblWDur: "Суару ұзақт. (мин)",
+    lblLightSched: "Фитошамдар кестесі",
+    errSoil: (v) => "Тексеру қатесі: топырақ ылғалдылығы 0%-дан 100%-ға дейін болуы керек (" + v + "% енгізілді).",
+    errTemp: "Тексеру қатесі: ең төменгі температура ең жоғарғысынан кіші болуы керек.",
+    errWater: "Тексеру қатесі: суару ұзақтығы 1-ден 60 мин дейін болуы керек.",
+    savedBox: "Баптаулар мен профиль сақталды.",
+    savedToast: "Баптаулар сақталды",
+    profileAppliedToast: (name) => "Профиль қолданылды: " + name,
+    lblUnits: "Темп. бірлігі",
+    lblLang: "Тіл (RU / KZ)",
+    saveBtn: "Баптауларды сақтау",
+    logoutBtn: "Аккаунттан шығу",
+  }
+};
+
+function T() { return I18N[state.lang]; }
+function cropName(code) { return PROFILES[code][state.lang]; }
+function ghLabel(g) { return T().ghWord + " " + g.id; }
+
+const state = {
+  screen: "dashboard",
+  activeDemoBtn: "btnSc1",
+  loginError: false,
+  selectedGh: 0,
+  hgLearning: false,
+  alertFilter: "active",
+  histPeriod: "week",
+  highlightDevice: null,
+  unit: "C",
+  lang: "RU",
+  settingsError: "",
+  settingsErrorType: "",
+  settingsErrorVal: "",
+  settingsSaved: false,
+  lastUpdatedSec: 2,
+  coolingTimer: null,
+  greenhouses: [
+    {
+      id: 1, crop: "tomatoes", area: 500, mode: "manual",
+      temp: 27.6, hum: 62, soil: 54, lux: 14200,
+      slope: 0.10, r2: 0.91,
+      limits: { ...PROFILES.tomatoes },
+      devices: { irrigation: false, ventilation: false, lamps: false, heating: false },
+      logs: [
+        { time: "14:25", key: "hg_eta", srcKey: "hg" },
+        { time: "08:00", key: "water_auto", mins: 10, srcKey: "auto" },
+        { time: "06:00", key: "lamps_on", srcKey: "auto" },
+      ]
+    },
+    {
+      id: 2, crop: "cucumbers", area: 500, mode: "auto",
+      temp: 25.1, hum: 74, soil: 64, lux: 13500,
+      slope: 0.02, r2: 0.84,
+      limits: { ...PROFILES.cucumbers },
+      devices: { irrigation: false, ventilation: false, lamps: false, heating: false },
+      logs: [
+        { time: "09:15", key: "water_auto", mins: 12, srcKey: "auto" },
+      ]
+    },
+    {
+      id: 3, crop: "tomatoes", area: 500, mode: "manual",
+      temp: 24.4, hum: 60, soil: 58, lux: 12900,
+      slope: 0.01, r2: 0.78,
+      limits: { ...PROFILES.tomatoes },
+      devices: { irrigation: false, ventilation: false, lamps: true, heating: false },
+      logs: [
+        { time: "11:10", key: "lamps_on", srcKey: "manual" },
+      ]
+    },
+  ],
+  alerts: [
+    { id: 1, ghIdx: 0, severity: "crit", timeKey: "14:31", device: "ventilation", resolved: true },
+    { id: 2, ghIdx: 0, severity: "warn", timeKey: "14:25", device: "ventilation", resolved: false },
+    { id: 3, ghIdx: 1, severity: "ok",   timeKey: "yesterday", device: "irrigation", resolved: true },
+  ]
+};
+
+function fmtTemp(c) {
+  if (state.unit === "F") return ((c * 9/5) + 32).toFixed(1) + " °F";
+  return c.toFixed(1) + " °C";
+}
+
+function nowHM() {
+  const d = new Date();
+  return String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
+}
+
+function formatLogEntry(l) {
+  const t = T();
+  let txt = "";
+  if (l.key === "hg_eta") txt = t.logHGEta;
+  else if (l.key === "water_auto") txt = t.logWaterAuto(l.mins);
+  else if (l.key === "lamps_on") txt = t.logLampsOn;
+  else if (l.key === "vent_auto") txt = t.logVentAuto;
+  else if (l.key === "dev_toggle") txt = t.devShort[l.devKey] + " " + (l.on ? "ON" : "OFF");
+  const srcLabel = l.srcKey === "manual" ? t.srcManual : (l.srcKey === "auto" ? t.srcAuto : t.srcHG);
+  return { txt, srcLabel, isManual: l.srcKey === "manual" };
+}
+
+function renderHeatGuardChartSvg() {
+  const t = T();
+  return `<svg viewBox="0 0 330 168" width="100%" height="168">
+    <rect x="0" y="0" width="330" height="168" rx="10" fill="#F8FAF7"/>
+    <line x1="38" y1="18" x2="318" y2="18" stroke="#E2EAE3" stroke-width="1"/>
+    <line x1="38" y1="64" x2="318" y2="64" stroke="#E2EAE3" stroke-width="1"/>
+    <line x1="38" y1="91" x2="318" y2="91" stroke="#E2EAE3" stroke-width="1"/>
+    <line x1="38" y1="127" x2="318" y2="127" stroke="#E2EAE3" stroke-width="1"/>
+    <rect x="38" y="14" width="280" height="50" fill="#D32F2F" fill-opacity="0.09"/>
+    <line x1="38" y1="64" x2="318" y2="64" stroke="#D32F2F" stroke-width="1.8" stroke-dasharray="5,4"/>
+    <text x="44" y="58" text-anchor="start" font-size="10" font-weight="800" fill="#D32F2F">T_max = 30.0 C</text>
+    <line x1="178" y1="14" x2="178" y2="140" stroke="#526056" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <text x="178" y="156" text-anchor="middle" font-size="10" font-weight="800" fill="#1A1F1C">${t.hgNow}</text>
+    <text x="42" y="156" font-size="10" fill="#526056">-2 ${t.hgAxisUnit}</text>
+    <text x="110" y="156" text-anchor="middle" font-size="10" fill="#526056">-1 ${t.hgAxisUnit}</text>
+    <text x="246" y="156" text-anchor="middle" font-size="10" fill="#E67E22">+1 ${t.hgAxisUnit}</text>
+    <text x="316" y="156" text-anchor="end" font-size="10" fill="#D32F2F">+2 ${t.hgAxisUnit}</text>
+    <text x="32" y="22" text-anchor="end" font-size="10" fill="#526056">40</text>
+    <text x="32" y="68" text-anchor="end" font-size="10" font-weight="700" fill="#D32F2F">30</text>
+    <text x="32" y="95" text-anchor="end" font-size="10" fill="#526056">24</text>
+    <text x="32" y="131" text-anchor="end" font-size="10" fill="#526056">16</text>
+    <polyline points="42,129 76,115 110,101 144,88 178,75" fill="none" stroke="#1B5E20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="42" cy="129" r="3" fill="#1B5E20"/>
+    <circle cx="110" cy="101" r="3" fill="#1B5E20"/>
+    <circle cx="178" cy="75" r="5" fill="#1B5E20" stroke="#FFF" stroke-width="2"/>
+    <text x="172" y="99" text-anchor="end" font-size="9.5" font-weight="800" fill="#1B5E20">27.6 C</text>
+    <line x1="178" y1="75" x2="314" y2="20" stroke="#D32F2F" stroke-width="3" stroke-dasharray="6,4"/>
+    <text x="314" y="42" text-anchor="end" font-size="9.5" font-weight="800" fill="#D32F2F">39.6 C</text>
+    <circle cx="205" cy="64" r="5.5" fill="#D32F2F" stroke="#FFF" stroke-width="2"/>
+    <rect x="214" y="72" width="76" height="22" rx="6" fill="#D32F2F"/>
+    <text x="252" y="86" text-anchor="middle" font-size="10" font-weight="800" fill="#FFF">ETA: 24 ${t.hgMinUnit}</text>
+  </svg>`;
+}
+
+// Dynamic SVG charts for Day / Week / Month
+function buildHistoryView(period, g) {
+  const t = T();
+  let tempSvg = "", soilSvg = "", tempPeakText = "", soilMinText = "", summaryHtml = "";
+
+  if (period === "day") {
+    const xDay = ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00", t.hgNow];
+    const xs = [40, 84, 128, 172, 216, 258, 316];
+    tempPeakText = `${t.peakWord}: ${fmtTemp(29.4)} (${t.dayPeakLbl})`;
+    soilMinText = `${t.minWord}: 42% (${t.dayMinLbl})`;
+    tempSvg = `<svg viewBox="0 0 330 142" width="100%" height="142">
+      <rect x="0" y="0" width="330" height="142" rx="10" fill="#F8FAF7"/>
+      <line x1="36" y1="22" x2="318" y2="22" stroke="#E2EAE3"/>
+      <line x1="36" y1="54" x2="318" y2="54" stroke="#E2EAE3"/>
+      <line x1="36" y1="86" x2="318" y2="86" stroke="#E2EAE3"/>
+      <line x1="36" y1="114" x2="318" y2="114" stroke="#E2EAE3"/>
+      <line x1="36" y1="42" x2="318" y2="42" stroke="#D32F2F" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <text x="315" y="37" text-anchor="end" font-size="9.5" font-weight="800" fill="#D32F2F">${t.threshWord} 30 C</text>
+      <text x="30" y="26" text-anchor="end" font-size="9.5" fill="#526056">36</text>
+      <text x="30" y="58" text-anchor="end" font-size="9.5" fill="#526056">28</text>
+      <text x="30" y="90" text-anchor="end" font-size="9.5" fill="#526056">20</text>
+      <text x="30" y="118" text-anchor="end" font-size="9.5" fill="#526056">14</text>
+      <polyline points="42,90 87,93 132,80 178,59 224,46 270,53 314,56" fill="none" stroke="#E67E22" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="224" cy="46" r="4.5" fill="#E67E22" stroke="#FFF" stroke-width="1.5"/>
+      <text x="224" y="36" text-anchor="middle" font-size="9.5" font-weight="800" fill="#A04D05">29.4 C</text>
+      ${xDay.map((lbl, i) => `<text x="${xs[i]}" y="133" text-anchor="${i===0?'start':(i===6?'end':'middle')}" font-size="9" font-weight="${i===4||i===6?'800':'400'}" fill="${i===4?'#A04D05':'#526056'}">${lbl}</text>`).join("")}
+    </svg>`;
+
+    soilSvg = `<svg viewBox="0 0 330 148" width="100%" height="148">
+      <rect x="0" y="0" width="330" height="148" rx="10" fill="#F8FAF7"/>
+      <rect x="114" y="24" width="36" height="92" fill="#E67E22" fill-opacity="0.16"/>
+      <rect x="94" y="5" width="76" height="17" rx="4" fill="#E67E22"/>
+      <text x="132" y="16.5" text-anchor="middle" font-size="9" font-weight="800" fill="#FFF">${t.dryShortBadge}</text>
+      <line x1="36" y1="24" x2="318" y2="24" stroke="#E2EAE3"/>
+      <line x1="36" y1="54" x2="318" y2="54" stroke="#E2EAE3"/>
+      <line x1="36" y1="84" x2="318" y2="84" stroke="#E2EAE3"/>
+      <line x1="36" y1="116" x2="318" y2="116" stroke="#E2EAE3"/>
+      <line x1="36" y1="74" x2="318" y2="74" stroke="#D32F2F" stroke-width="1.6" stroke-dasharray="5,4"/>
+      <text x="315" y="69" text-anchor="end" font-size="9.5" font-weight="800" fill="#D32F2F">${t.minWord}. 45%</text>
+      <text x="30" y="28" text-anchor="end" font-size="9.5" fill="#526056">80%</text>
+      <text x="30" y="58" text-anchor="end" font-size="9.5" fill="#526056">60%</text>
+      <text x="30" y="88" text-anchor="end" font-size="9.5" fill="#526056">40%</text>
+      <text x="30" y="118" text-anchor="end" font-size="9.5" fill="#526056">20%</text>
+      <polyline points="42,66 87,72 132,81 178,50 224,57 270,60 314,63" fill="none" stroke="#1B5E20" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="132" cy="81" r="4.5" fill="#E67E22" stroke="#FFF" stroke-width="1.5"/>
+      <text x="132" y="96" text-anchor="middle" font-size="9.5" font-weight="800" fill="#A04D05">42%</text>
+      ${xDay.map((lbl, i) => `<text x="${xs[i]}" y="138" text-anchor="${i===0?'start':(i===6?'end':'middle')}" font-size="9" font-weight="${i===2?'800':'400'}" fill="${i===2?'#A04D05':'#526056'}">${lbl}</text>`).join("")}
+    </svg>`;
+    summaryHtml = `<div class="warn-box">${t.histSummaryDay(g.limits.soilMin)}</div>`;
+  } else if (period === "month") {
+    const xMon = t.daysMonth;
+    const xs = [44, 98, 152, 206, 260, 312];
+    tempPeakText = `${t.peakWord}: ${fmtTemp(36.2)} (${t.monthPeakLbl})`;
+    soilMinText = `${t.minWord}: 31% (${t.monthMinLbl})`;
+    tempSvg = `<svg viewBox="0 0 330 142" width="100%" height="142">
+      <rect x="0" y="0" width="330" height="142" rx="10" fill="#F8FAF7"/>
+      <line x1="36" y1="22" x2="318" y2="22" stroke="#E2EAE3"/>
+      <line x1="36" y1="54" x2="318" y2="54" stroke="#E2EAE3"/>
+      <line x1="36" y1="86" x2="318" y2="86" stroke="#E2EAE3"/>
+      <line x1="36" y1="114" x2="318" y2="114" stroke="#E2EAE3"/>
+      <line x1="36" y1="42" x2="318" y2="42" stroke="#D32F2F" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <text x="315" y="37" text-anchor="end" font-size="9.5" font-weight="800" fill="#D32F2F">${t.threshWord} 30 C</text>
+      <text x="30" y="26" text-anchor="end" font-size="9.5" fill="#526056">36</text>
+      <text x="30" y="58" text-anchor="end" font-size="9.5" fill="#526056">28</text>
+      <text x="30" y="90" text-anchor="end" font-size="9.5" fill="#526056">20</text>
+      <text x="30" y="118" text-anchor="end" font-size="9.5" fill="#526056">14</text>
+      <polyline points="44,68 98,58 152,32 206,56 260,23 312,56" fill="none" stroke="#E67E22" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="152" cy="32" r="4" fill="#E67E22" stroke="#FFF" stroke-width="1.5"/>
+      <text x="152" y="24" text-anchor="middle" font-size="9" font-weight="800" fill="#A04D05">33.8 C</text>
+      <circle cx="260" cy="23" r="4.5" fill="#D32F2F" stroke="#FFF" stroke-width="1.5"/>
+      <text x="260" y="15" text-anchor="middle" font-size="9.5" font-weight="800" fill="#D32F2F">36.2 C</text>
+      ${xMon.map((lbl, i) => `<text x="${xs[i]}" y="133" text-anchor="${i===0?'start':(i===5?'end':'middle')}" font-size="8.8" font-weight="${i===4?'800':'400'}" fill="${i===4?'#D32F2F':'#526056'}">${lbl}</text>`).join("")}
+    </svg>`;
+
+    soilSvg = `<svg viewBox="0 0 330 148" width="100%" height="148">
+      <rect x="0" y="0" width="330" height="148" rx="10" fill="#F8FAF7"/>
+      <rect x="82" y="24" width="32" height="92" fill="#E67E22" fill-opacity="0.14"/>
+      <rect x="240" y="24" width="40" height="92" fill="#D32F2F" fill-opacity="0.15"/>
+      <rect x="212" y="5" width="96" height="17" rx="4" fill="#D32F2F"/>
+      <text x="260" y="16.5" text-anchor="middle" font-size="9" font-weight="800" fill="#FFF">${t.dryBadge}</text>
+      <line x1="36" y1="24" x2="318" y2="24" stroke="#E2EAE3"/>
+      <line x1="36" y1="54" x2="318" y2="54" stroke="#E2EAE3"/>
+      <line x1="36" y1="84" x2="318" y2="84" stroke="#E2EAE3"/>
+      <line x1="36" y1="116" x2="318" y2="116" stroke="#E2EAE3"/>
+      <line x1="36" y1="74" x2="318" y2="74" stroke="#D32F2F" stroke-width="1.6" stroke-dasharray="5,4"/>
+      <text x="42" y="69" text-anchor="start" font-size="9.5" font-weight="800" fill="#D32F2F">${t.minWord}. 45%</text>
+      <text x="30" y="28" text-anchor="end" font-size="9.5" fill="#526056">80%</text>
+      <text x="30" y="58" text-anchor="end" font-size="9.5" fill="#526056">60%</text>
+      <text x="30" y="88" text-anchor="end" font-size="9.5" fill="#526056">40%</text>
+      <text x="30" y="118" text-anchor="end" font-size="9.5" fill="#526056">20%</text>
+      <polyline points="44,48 98,87 152,52 206,56 260,100 312,48" fill="none" stroke="#1B5E20" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="98" cy="87" r="4" fill="#E67E22" stroke="#FFF" stroke-width="1.5"/>
+      <text x="98" y="101" text-anchor="middle" font-size="9" font-weight="800" fill="#A04D05">38%</text>
+      <circle cx="260" cy="100" r="4.5" fill="#D32F2F" stroke="#FFF" stroke-width="1.5"/>
+      <text x="260" y="113" text-anchor="middle" font-size="9.5" font-weight="800" fill="#D32F2F">31%</text>
+      ${xMon.map((lbl, i) => `<text x="${xs[i]}" y="138" text-anchor="${i===0?'start':(i===5?'end':'middle')}" font-size="8.8" font-weight="${i===4?'800':'400'}" fill="${i===4?'#D32F2F':'#526056'}">${lbl}</text>`).join("")}
+    </svg>`;
+    summaryHtml = `<div class="err-box">${t.histSummaryMonth(g.limits.soilMin)}</div>`;
+  } else {
+    // week (default)
+    const xWk = t.daysWeek;
+    const xs = [42, 86, 132, 178, 224, 270, 314];
+    tempPeakText = `${t.peakWord}: ${fmtTemp(36.2)} (${t.weekPeakLbl})`;
+    soilMinText = `${t.minWord}: 31% (${t.weekMinLbl})`;
+    tempSvg = `<svg viewBox="0 0 330 142" width="100%" height="142">
+      <rect x="0" y="0" width="330" height="142" rx="10" fill="#F8FAF7"/>
+      <line x1="36" y1="22" x2="318" y2="22" stroke="#E2EAE3"/>
+      <line x1="36" y1="54" x2="318" y2="54" stroke="#E2EAE3"/>
+      <line x1="36" y1="86" x2="318" y2="86" stroke="#E2EAE3"/>
+      <line x1="36" y1="114" x2="318" y2="114" stroke="#E2EAE3"/>
+      <line x1="36" y1="42" x2="318" y2="42" stroke="#D32F2F" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <text x="315" y="37" text-anchor="end" font-size="9.5" font-weight="800" fill="#D32F2F">${t.threshWord} 30 C</text>
+      <text x="30" y="26" text-anchor="end" font-size="9.5" fill="#526056">36</text>
+      <text x="30" y="58" text-anchor="end" font-size="9.5" fill="#526056">28</text>
+      <text x="30" y="90" text-anchor="end" font-size="9.5" fill="#526056">20</text>
+      <text x="30" y="118" text-anchor="end" font-size="9.5" fill="#526056">14</text>
+      <polyline points="42,74 86,66 132,58 178,24 224,52 270,62 314,56" fill="none" stroke="#E67E22" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="178" cy="24" r="4.5" fill="#D32F2F" stroke="#FFF" stroke-width="1.5"/>
+      <text x="178" y="16" text-anchor="middle" font-size="9.5" font-weight="800" fill="#D32F2F">36.2 C</text>
+      ${xWk.map((lbl, i) => `<text x="${xs[i]}" y="133" text-anchor="${i===0?'start':(i===6?'end':'middle')}" font-size="9.5" font-weight="${i===3?'800':'400'}" fill="${i===3?'#D32F2F':'#526056'}">${lbl}</text>`).join("")}
+    </svg>`;
+
+    soilSvg = `<svg viewBox="0 0 330 148" width="100%" height="148">
+      <rect x="0" y="0" width="330" height="148" rx="10" fill="#F8FAF7"/>
+      <rect x="122" y="24" width="76" height="92" fill="#D32F2F" fill-opacity="0.14"/>
+      <rect x="112" y="5" width="96" height="17" rx="4" fill="#D32F2F"/>
+      <text x="160" y="16.5" text-anchor="middle" font-size="9" font-weight="800" fill="#FFF">${t.dryBadge}</text>
+      <line x1="36" y1="24" x2="318" y2="24" stroke="#E2EAE3"/>
+      <line x1="36" y1="54" x2="318" y2="54" stroke="#E2EAE3"/>
+      <line x1="36" y1="84" x2="318" y2="84" stroke="#E2EAE3"/>
+      <line x1="36" y1="116" x2="318" y2="116" stroke="#E2EAE3"/>
+      <line x1="36" y1="74" x2="318" y2="74" stroke="#D32F2F" stroke-width="1.6" stroke-dasharray="5,4"/>
+      <text x="315" y="69" text-anchor="end" font-size="9.5" font-weight="800" fill="#D32F2F">${t.minWord}. 45%</text>
+      <text x="30" y="28" text-anchor="end" font-size="9.5" fill="#526056">80%</text>
+      <text x="30" y="58" text-anchor="end" font-size="9.5" fill="#526056">60%</text>
+      <text x="30" y="88" text-anchor="end" font-size="9.5" fill="#526056">40%</text>
+      <text x="30" y="118" text-anchor="end" font-size="9.5" fill="#526056">20%</text>
+      <polyline points="42,46 86,52 132,88 178,100 224,50 270,48 314,44" fill="none" stroke="#1B5E20" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="132" cy="88" r="4" fill="#D32F2F" stroke="#FFF" stroke-width="1.5"/>
+      <circle cx="178" cy="100" r="4.5" fill="#D32F2F" stroke="#FFF" stroke-width="1.5"/>
+      <text x="178" y="113" text-anchor="middle" font-size="9.5" font-weight="800" fill="#D32F2F">31%</text>
+      ${xWk.map((lbl, i) => `<text x="${xs[i]}" y="138" text-anchor="${i===0?'start':(i===6?'end':'middle')}" font-size="9.5" font-weight="${i===2||i===3?'800':'400'}" fill="${i===2||i===3?'#D32F2F':'#526056'}">${lbl}</text>`).join("")}
+    </svg>`;
+    summaryHtml = `<div class="err-box">${t.histSummaryWeek(g.limits.soilMin)}</div>`;
+  }
+  return { tempSvg, soilSvg, tempPeakText, soilMinText, summaryHtml };
+}
+
+// Exact Heat Guard formula: ETA = (T_max - T_now) / b, T_2h = T_now + b * 120
+function computeHeatGuard(g) {
+  const exceededBy = +(g.temp - g.limits.tempMax).toFixed(1);
+  if (exceededBy > 0) {
+    return { kind: "exceeded", exceededBy, eta: 0, t2h: +(g.temp + g.slope * 120).toFixed(1) };
+  }
+  if (g.devices.ventilation || g.slope <= 0.02) {
+    return { kind: "safe", exceededBy: 0, eta: null, t2h: +(g.temp + Math.max(0, g.slope) * 120).toFixed(1) };
+  }
+  const eta = Math.round((g.limits.tempMax - g.temp) / g.slope);
+  const t2h = +(g.temp + g.slope * 120).toFixed(1);
+  if (eta < 30) return { kind: "crit_eta", exceededBy: 0, eta, t2h };
+  if (eta <= 120) return { kind: "warn_eta", exceededBy: 0, eta, t2h };
+  return { kind: "safe", exceededBy: 0, eta: null, t2h };
+}
+
+function ghStatus(g) {
+  const t = T();
+  const hg = computeHeatGuard(g);
+  if (hg.kind === "exceeded") {
+    return {
+      cls: "crit", dot: "dot-crit",
+      title: t.statusCritTitle(fmtTemp(g.temp)),
+      sub: t.statusExceededSub(fmtTemp(g.limits.tempMax), hg.exceededBy.toFixed(1))
+    };
+  }
+  if (hg.kind === "crit_eta" || hg.kind === "warn_eta") {
+    return {
+      cls: "warn", dot: "dot-warn",
+      title: t.statusWarnTitle(hg.eta),
+      sub: (g.mode === "auto" ? t.modeAutoShort : t.modeManualShort) + " - " + t.profileWord + ": " + cropName(g.crop)
+    };
+  }
+  return {
+    cls: "ok", dot: "dot-ok",
+    title: t.statusOkTitle,
+    sub: t.statusOkSub(cropName(g.crop))
+  };
+}
+
+function setActiveDemoBtn(id) {
+  state.activeDemoBtn = id;
+  ["btnSc1","btnSc2","btnSc3","btnSc4","btnLogin","btnOffline","btnLearning"].forEach(k => {
+    const el = document.getElementById(k);
+    if (el) el.classList.toggle("sc-active", k === id);
+  });
+}
+
+function showToast(msg) {
+  const el = document.getElementById("toast");
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(window._tt);
+  window._tt = setTimeout(() => el.classList.remove("show"), 2600);
+}
+
+function toggleDemoBar() {
+  const bar = document.getElementById("demoBar");
+  const btn = document.getElementById("collapseBtn");
+  bar.classList.toggle("collapsed");
+  btn.textContent = bar.classList.contains("collapsed") ? "Показать демо-панель" : "Свернуть";
+}
+
+function setHint(txt) {
+  document.getElementById("scenarioHintText").textContent = txt;
+  document.getElementById("scenarioHint").classList.add("show");
+}
+
+function hideHint() {
+  document.getElementById("scenarioHint").classList.remove("show");
+}
+
+function openDemoShortcut(kind) {
+  if (kind === "login") {
+    setActiveDemoBtn("btnLogin");
+    hideHint();
+    go("login");
+  } else if (kind === "offline") {
+    setActiveDemoBtn("btnOffline");
+    setHint("Проверка офлайн-режима: показан красный баннер, последние данные из кэша, кнопки заблокированы.");
+    go("offline");
+  } else if (kind === "learning") {
+    setActiveDemoBtn("btnLearning");
+    setHint("Learning mode (холодный старт): пока нет 2 часов данных, новая теплица защищена профилем культуры (T_max - 2 °C).");
+    go("heatguard", { learning: true });
+  }
+}
+
+function runScenario(n) {
+  clearInterval(state.coolingTimer);
+  setActiveDemoBtn("btnSc" + n);
+  const g1 = state.greenhouses[0];
+
+  if (n === 1) {
+    g1.mode = "manual"; g1.temp = 27.6; g1.slope = 0.10; g1.devices.ventilation = false;
+    state.alerts[0].resolved = true;
+    state.alerts[1].resolved = false;
+    state.selectedGh = 0;
+    state.screen = "dashboard";
+    setHint("Сценарий 1: Теплица 1 (27.6 °C) - за 5 сек виден янтарный статус 'Внимание: перегрев через 24 мин', 4 датчика и 3 теплицы Серика.");
+  } else if (n === 2) {
+    g1.mode = "manual"; g1.temp = 36.2; g1.slope = 0.10; g1.devices.ventilation = false;
+    state.alerts[0].resolved = false;
+    state.alerts[1].resolved = true;
+    state.selectedGh = 0;
+    state.alertFilter = "active";
+    state.screen = "alerts";
+    setHint("Сценарий 2: Порог 30.0 °C превышен (+6.2 °C), режим Ручной. Нажмите на красный алерт -> включите Вентиляцию ON и наблюдайте снижение температуры!");
+  } else if (n === 3) {
+    g1.temp = 27.6; g1.slope = 0.10;
+    state.selectedGh = 0;
+    setMode("auto", true);
+    state.screen = "devices";
+    setHint("Сценарий 3: Включен режим Auto - автоматика сама открыла вентиляцию по Heat Guard (ETA 24 мин). Нажмите шестеренку сверху для настройки автополива.");
+  } else if (n === 4) {
+    state.selectedGh = 0;
+    state.histPeriod = "week";
+    state.screen = "history";
+    setHint("Сценарий 4: График за Неделю (можно переключать День / Неделя / Месяц). На нижнем графике красным выделен период нехватки воды (Ср - Чт, 31%).");
+  }
+  render();
+}
+
+function go(scr, opts = {}) {
+  if (opts.learning !== undefined) state.hgLearning = opts.learning;
+  if (opts.ghIdx !== undefined) state.selectedGh = opts.ghIdx;
+  if (opts.highlightDevice !== undefined) state.highlightDevice = opts.highlightDevice;
+  else state.highlightDevice = null;
+  state.screen = scr;
+  render();
+}
+
+function activeAlertsCount() {
+  return state.alerts.filter(a => !a.resolved).length;
+}
+
+function startCooling(g) {
+  clearInterval(state.coolingTimer);
+  state.coolingTimer = setInterval(() => {
+    if (g.temp > 26.8 && g.devices.ventilation) {
+      g.temp = Math.max(26.8, +(g.temp - 1.4).toFixed(1));
+      if (g.temp <= g.limits.tempMax) {
+        g.slope = 0.01;
+        state.alerts[0].resolved = true;
+        state.alerts[1].resolved = true;
+      }
+      render();
+    } else {
+      clearInterval(state.coolingTimer);
+    }
+  }, 900);
+}
+
+function setMode(nextMode, silent = false) {
+  const t = T();
+  const g = state.greenhouses[state.selectedGh];
+  g.mode = nextMode;
+  if (nextMode === "auto") {
+    const hg = computeHeatGuard(g);
+    if ((hg.kind === "exceeded" || hg.kind === "crit_eta") && !g.devices.ventilation) {
+      g.devices.ventilation = true;
+      g.logs.unshift({ time: nowHM(), key: "vent_auto", srcKey: "hg" });
+      if (!silent) showToast(t.toastAutoHG);
+      startCooling(g);
+    } else if (!silent) {
+      showToast(t.toastAutoOn);
+    }
+  } else {
+    if (!silent) showToast(t.toastManualOn);
+  }
+  render();
+}
+
+function toggleDevice(devKey) {
+  const t = T();
+  const g = state.greenhouses[state.selectedGh];
+  const next = !g.devices[devKey];
+  g.devices[devKey] = next;
+  g.logs.unshift({ time: nowHM(), key: "dev_toggle", devKey, on: next, srcKey: "manual" });
+  state.highlightDevice = null;
+
+  if (devKey === "ventilation" && next) {
+    showToast(t.toastVentCooling);
+    startCooling(g);
+  } else {
+    showToast(t.toastDevState(t.devShort[devKey], next));
+  }
+  render();
+}
+
+function openVentFromHG() {
+  state.selectedGh = 0;
+  state.screen = "devices";
+  if (!state.greenhouses[0].devices.ventilation) {
+    toggleDevice("ventilation");
+  } else {
+    render();
+  }
+}
+
+function applyProfile(code) {
+  const g = state.greenhouses[state.selectedGh];
+  g.crop = code;
+  g.limits = { ...PROFILES[code] };
+  state.settingsErrorType = "";
+  state.settingsSaved = true;
+  showToast(T().profileAppliedToast(cropName(code)));
+  render();
+}
+
+function saveSettings() {
+  const tMin = parseFloat(document.getElementById("inpTMin").value);
+  const tMax = parseFloat(document.getElementById("inpTMax").value);
+  const sMin = parseFloat(document.getElementById("inpSMin").value);
+  const wDur = parseFloat(document.getElementById("inpWDur").value);
+  if (isNaN(sMin) || sMin < 0 || sMin > 100) {
+    state.settingsErrorType = "soil";
+    state.settingsErrorVal = isNaN(sMin) ? "" : String(sMin);
+    state.settingsSaved = false;
+    render();
+    return;
+  }
+  if (isNaN(tMin) || isNaN(tMax) || tMin >= tMax) {
+    state.settingsErrorType = "temp";
+    state.settingsSaved = false;
+    render();
+    return;
+  }
+  if (isNaN(wDur) || wDur < 1 || wDur > 60) {
+    state.settingsErrorType = "water";
+    state.settingsSaved = false;
+    render();
+    return;
+  }
+  const g = state.greenhouses[state.selectedGh];
+  g.limits.tempMin = tMin; g.limits.tempMax = tMax; g.limits.soilMin = sMin; g.limits.waterMin = wDur;
+  state.settingsErrorType = "";
+  state.settingsSaved = true;
+  showToast(T().savedToast);
+  render();
+}
+
+function testInvalidSoil() {
+  const el = document.getElementById("inpSMin");
+  if (el) el.value = "-50";
+  saveSettings();
+}
+
+function doLogin(forceErr = false) {
+  const u = document.getElementById("loginUser")?.value.trim();
+  const p = document.getElementById("loginPass")?.value.trim();
+  if (forceErr || u !== "serik.abenov" || !p) {
+    state.loginError = true;
+    render();
+  } else {
+    state.loginError = false;
+    setActiveDemoBtn("btnSc1");
+    go("dashboard");
+    showToast(T().welcomeToast);
+  }
+}
+
+function renderStatus(offline=false) {
+  const net = offline ? `<span style="color:#D32F2F;">${T().noNet}</span>` : "4G  86%";
+  return `<div class="status-bar"><span>${nowHM()}</span><span>${net}</span></div>`;
+}
+
+function renderHeader(sub, backTo=null) {
+  const left = backTo
+    ? `<div class="brand-row"><button class="icon-btn" style="width:36px;height:36px;" onclick="go('${backTo}')">&#8592;</button><div><div class="brand-title"><span>Agro</span>Guard</div><div class="header-sub">${sub}</div></div></div>`
+    : `<div class="brand-row">${LOGO_SM}<div><div class="brand-title"><span>Agro</span>Guard</div><div class="header-sub">${sub}</div></div></div>`;
+  const right = state.screen === "settings"
+    ? `<button class="icon-btn" style="font-size:12px;" onclick="state.lang = state.lang==='RU'?'KZ':'RU'; render();">${state.lang}</button>`
+    : `<button class="icon-btn" title="${T().settingsTitle}" onclick="go('settings')">&#9881;</button>`;
+  return `<div class="app-header">${left}${right}</div>`;
+}
+
+function renderTabs(active) {
+  const t = T();
+  const cnt = activeAlertsCount();
+  const items = [
+    ["dashboard", "&#127968;", t.tabHome],
+    ["devices",   "&#9881;",   t.tabDevices],
+    ["alerts",    "&#128276;", t.tabAlerts],
+    ["history",   "&#128200;", t.tabHistory],
+  ];
+  return `<div class="tab-bar">` + items.map(([k, ico, lbl]) => `
+    <button class="tab-item ${active===k?'active':''}" onclick="go('${k}')">
+      <div class="tab-ico">${ico}</div>
+      <span>${lbl}</span>
+      ${k==='alerts' && cnt>0 ? `<span class="tab-badge">${cnt}</span>` : ""}
+    </button>`).join("") + `</div>`;
+}
+
+function renderGhTabs() {
+  return `<div class="gh-tabs">` + state.greenhouses.map((g, i) => {
+    const st = ghStatus(g);
+    return `<button class="gh-pill ${i===state.selectedGh?'active':''}" onclick="state.selectedGh=${i}; render();"><span class="dot ${st.dot}"></span>${ghLabel(g)}</button>`;
+  }).join("") + `</div>`;
+}
+
+function render() {
+  const app = document.getElementById("app");
+  const t = T();
+  const g = state.greenhouses[state.selectedGh];
+  const st = ghStatus(g);
+  const hg = computeHeatGuard(g);
+  let html = "";
+
+  if (state.screen === "login") {
+    html = renderStatus() + `
+    <div class="scroll" style="justify-content:center; padding:24px 20px; gap:14px;">
+      <div style="text-align:center; display:flex; flex-direction:column; align-items:center; gap:8px;">
+        ${LOGO_LG}
+        <div style="font-size:28px; font-weight:800; letter-spacing:-0.8px;"><span style="color:var(--green);">Agro</span>Guard</div>
+        <div style="font-size:13px; color:var(--muted); font-weight:600;">${t.loginTagline}</div>
+      </div>
+      <div class="card" style="display:flex; flex-direction:column; gap:11px; padding:18px;">
+        <div style="font-size:18px; font-weight:800;">${t.loginHeading}</div>
+        <div><label class="field-label">${t.loginUser}</label><input class="input" id="loginUser" value="serik.abenov"></div>
+        <div><label class="field-label">${t.loginPass}</label><input class="input" id="loginPass" type="password" value="serik2026"></div>
+        ${state.loginError ? `<div class="err-box">${t.loginErr}</div>` : ""}
+        <button class="btn btn-primary" onclick="doLogin(false)">${t.loginBtn}</button>
+        <button class="btn btn-outline" style="min-height:40px; font-size:13px;" onclick="doLogin(true)">${t.loginTestErr}</button>
+      </div>
+      <div class="card" style="padding:11px 13px; background:var(--green-soft); border-color:var(--green);">
+        <div style="font-size:12px; font-weight:800; color:var(--green);">${t.farmCardTitle}</div>
+        <div style="font-size:11.5px; color:var(--muted);">${t.farmCardSub}</div>
+      </div>
+    </div>`;
+  } else if (state.screen === "dashboard") {
+    const hgCls = (hg.kind === "exceeded" || hg.kind === "crit_eta") ? "crit" : (hg.kind === "warn_eta" ? "" : "ok");
+    let hgBadge = `<span class="pill-tag tag-ok">${t.hgSafeTag}</span>`;
+    let hgText = t.hgSafeText(g.slope.toFixed(2), g.r2);
+    let hgAction = t.hgActionChart;
+    if (hg.kind === "exceeded") {
+      hgBadge = `<span class="pill-tag tag-crit">+${hg.exceededBy.toFixed(1)} °C</span>`;
+      hgText = t.hgExceededText(fmtTemp(g.limits.tempMax), hg.exceededBy.toFixed(1));
+      hgAction = t.hgActionOpenNow;
+    } else if (hg.kind === "crit_eta" || hg.kind === "warn_eta") {
+      hgBadge = `<span class="pill-tag ${hg.kind==='crit_eta'?'tag-crit':'tag-warn'}">ETA: ${hg.eta} ${t.hgMinUnit}</span>`;
+      hgText = t.hgEtaText(fmtTemp(g.limits.tempMax), hg.eta, g.slope.toFixed(2), fmtTemp(hg.t2h), g.r2);
+      hgAction = t.hgActionRecommend;
+    }
+    const summaryOther = state.greenhouses
+      .map((gh, idx) => idx === state.selectedGh ? null : `${t.ghShort}${gh.id} ${cropName(gh.crop)}: ${fmtTemp(gh.temp)} (${ghStatus(gh).cls === 'ok' ? t.shortOk : t.shortWarn})`)
+      .filter(Boolean).join(" - ");
+
+    html = renderStatus() + renderHeader(t.farmerSub) + `
+    <div class="scroll">
+      ${renderGhTabs()}
+      <div class="muted-row">
+        <span>${ghLabel(g)} - ${cropName(g.crop)} (${g.area} м2)</span>
+        <span id="updLbl">${t.updatedPrefix} ${state.lastUpdatedSec} ${t.secAgo}</span>
+      </div>
+      <div class="banner banner-${st.cls}">
+        <div>
+          <div class="banner-title">${st.title}</div>
+          <div class="banner-sub">${st.sub}</div>
+        </div>
+        <div class="banner-badge">${g.mode === 'auto' ? 'AUTO' : 'MANUAL'}</div>
+      </div>
+      <div class="sensor-grid">
+        <div class="sensor-card ${hg.kind === 'exceeded' ? 'crit' : (hg.kind !== 'safe' ? 'warn' : '')}">
+          <div class="sensor-label"><span>${t.sensorAirTemp}</span><span>&#127777;</span></div>
+          <div class="sensor-val">${fmtTemp(g.temp)}</div>
+          <div class="sensor-range">${t.normWord}: ${g.limits.tempMin} - ${g.limits.tempMax} °C</div>
+        </div>
+        <div class="sensor-card">
+          <div class="sensor-label"><span>${t.sensorAirHum}</span><span>&#128167;</span></div>
+          <div class="sensor-val">${g.hum} %</div>
+          <div class="sensor-range">${t.normWord}: ${g.limits.humMin} - ${g.limits.humMax} %</div>
+        </div>
+        <div class="sensor-card">
+          <div class="sensor-label"><span>${t.sensorSoil}</span><span>&#127793;</span></div>
+          <div class="sensor-val">${g.soil} %</div>
+          <div class="sensor-range">${t.normWord}: ${g.limits.soilMin} - ${g.limits.soilMax} %</div>
+        </div>
+        <div class="sensor-card">
+          <div class="sensor-label"><span>${t.sensorLight}</span><span>&#9728;</span></div>
+          <div class="sensor-val">${g.lux.toLocaleString('ru-RU')}</div>
+          <div class="sensor-range">${t.luxUnit} - ${t.normWord} &gt; ${g.limits.luxMin}</div>
+        </div>
+      </div>
+      <div class="hg-widget ${hgCls}" onclick="go('heatguard', {learning:false})">
+        <div class="hg-top">
+          <div class="hg-title">${t.hgWidgetTitle}</div>
+          ${hgBadge}
+        </div>
+        <div style="font-size:12.5px; font-weight:700;">${hgText}</div>
+        <div class="muted-row" style="color:${hgCls==='ok'?'var(--green)':'var(--red)'};">
+          <span>${hgAction}</span>
+          <span>${t.detailsLink} &#8594;</span>
+        </div>
+      </div>
+      <div class="card" style="padding:11px 14px;">
+        <div style="font-size:13px; font-weight:800;">${t.all3Title}</div>
+        <div style="font-size:11.5px; color:var(--muted); margin-top:2px;">${summaryOther}</div>
+      </div>
+    </div>` + renderTabs("dashboard");
+  } else if (state.screen === "offline") {
+    html = renderStatus(true) + renderHeader(t.offlineSub) + `
+    <div class="scroll">
+      <div class="banner banner-crit">
+        <div>
+          <div class="banner-title">${t.offlineTitle}</div>
+          <div class="banner-sub">${t.offlineHint}</div>
+        </div>
+        <div class="banner-badge">OFFLINE</div>
+      </div>
+      <div class="sensor-grid dimmed">
+        <div class="sensor-card"><div class="sensor-label"><span>${t.sensorAirTemp}</span><span>${t.cacheWord}</span></div><div class="sensor-val">${fmtTemp(g.temp)}</div><div class="sensor-range">6 ${t.minAgo}</div></div>
+        <div class="sensor-card"><div class="sensor-label"><span>${t.sensorAirHum}</span><span>${t.cacheWord}</span></div><div class="sensor-val">${g.hum} %</div><div class="sensor-range">6 ${t.minAgo}</div></div>
+        <div class="sensor-card"><div class="sensor-label"><span>${t.sensorSoil}</span><span>${t.cacheWord}</span></div><div class="sensor-val">${g.soil} %</div><div class="sensor-range">6 ${t.minAgo}</div></div>
+        <div class="sensor-card"><div class="sensor-label"><span>${t.sensorLight}</span><span>${t.cacheWord}</span></div><div class="sensor-val">${g.lux.toLocaleString('ru-RU')}</div><div class="sensor-range">6 ${t.minAgo}</div></div>
+      </div>
+      <div class="card" style="display:flex; flex-direction:column; gap:10px; border-color:var(--red);">
+        <div style="font-size:13.5px; font-weight:800; color:var(--red);">${t.offlineLockTitle}</div>
+        <div style="font-size:12px; color:var(--muted);">${t.offlineLockDesc}</div>
+        <button class="btn btn-disabled" disabled>&#128274; ${t.offlineLockedBtn}</button>
+        <button class="btn btn-primary" onclick="setActiveDemoBtn('btnSc1'); go('dashboard'); showToast(T().reconnectedToast);">&#8635; ${t.retryBtn}</button>
+      </div>
+    </div>` + renderTabs("dashboard");
+  } else if (state.screen === "heatguard") {
+    const hgBannerTitle = hg.kind === "exceeded"
+      ? t.statusExceededSub(g.limits.tempMax.toFixed(1) + " °C", hg.exceededBy.toFixed(1))
+      : (hg.kind === "safe" ? t.hgRiskSafe : t.hgRiskCrit);
+    const hgBannerSub = hg.kind === "exceeded"
+      ? t.hgSubExceeded(fmtTemp(g.temp))
+      : t.hgSubForecast(fmtTemp(g.temp), fmtTemp(hg.t2h), g.limits.tempMax.toFixed(1));
+    const hgBadgeTxt = hg.kind === "exceeded" ? "+" + hg.exceededBy.toFixed(1) + " °C" : (hg.eta !== null ? "ETA " + hg.eta + " " + t.hgMinUnit : t.hgBadgeOk);
+    const etaMetric = hg.kind === "exceeded" ? t.hgEtaExceeded : (hg.eta !== null ? hg.eta + " " + t.hgMinUnit : t.hgEtaNone);
+
+    html = renderStatus() + renderHeader("Heat Guard - " + ghLabel(g), "dashboard") + `
+    <div class="scroll">
+      <div class="seg">
+        <button class="seg-btn ${!state.hgLearning?'active':''}" onclick="state.hgLearning=false; render();">${t.hgTabForecast}</button>
+        <button class="seg-btn ${state.hgLearning?'active':''}" onclick="state.hgLearning=true; render();">${t.hgTabLearning}</button>
+      </div>
+      ${!state.hgLearning ? `
+        <div class="banner banner-${hg.kind==='safe'?'ok':'crit'}" style="padding:12px 14px;">
+          <div>
+            <div class="banner-title">${hgBannerTitle}</div>
+            <div class="banner-sub">${hgBannerSub}</div>
+          </div>
+          <div class="banner-badge">${hgBadgeTxt}</div>
+        </div>
+        <div class="card" style="padding:12px;">
+          <div class="muted-row" style="margin-bottom:6px;"><span style="color:var(--text); font-weight:800;">${t.hgFormulaTitle}</span><span>${t.hgWindow}</span></div>
+          ${renderHeatGuardChartSvg()}
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
+          <div class="card" style="padding:10px 6px; text-align:center;"><div style="font-size:10.5px; color:var(--muted); font-weight:700;">${t.hgMetricEta}</div><div style="font-size:16.5px; font-weight:800; color:${hg.kind==='safe'?'var(--green)':'var(--red)'}; margin-top:2px;">${etaMetric}</div></div>
+          <div class="card" style="padding:10px 6px; text-align:center;"><div style="font-size:10.5px; color:var(--muted); font-weight:700;">${t.hgMetricSlope}</div><div style="font-size:15px; font-weight:800; color:var(--amber); white-space:nowrap; margin-top:3px;">+${g.slope.toFixed(2)} ${t.hgSlopeUnit}</div></div>
+          <div class="card" style="padding:10px 6px; text-align:center;"><div style="font-size:10.5px; color:var(--muted); font-weight:700;">${t.hgMetricR2}</div><div style="font-size:18px; font-weight:800; color:var(--green); margin-top:2px;">${g.r2}</div></div>
+        </div>
+        <button class="btn btn-danger" onclick="openVentFromHG()">&#127744; ${t.hgOpenVentBtn}</button>
+      ` : `
+        <div class="banner banner-warn">
+          <div>
+            <div class="banner-title">Learning mode</div>
+            <div class="banner-sub">${t.hgLearnSub}</div>
+          </div>
+          <div class="banner-badge">38%</div>
+        </div>
+        <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+          <div class="muted-row"><span style="font-weight:800; color:var(--text);">${t.hgLearnProgTitle}</span><span>${t.hgLearnPoints}</span></div>
+          <div class="progress-track"><div class="progress-fill"></div></div>
+          <div style="font-size:12.5px; color:var(--muted);">${t.hgLearnDesc}</div>
+        </div>
+        <div class="card" style="background:var(--green-soft); border-color:var(--green); display:flex; flex-direction:column; gap:6px;">
+          <div style="font-size:14px; font-weight:800; color:var(--green);">${t.hgLearnProfile} ${cropName(g.crop)}</div>
+          <div style="font-size:12.5px; font-weight:700;">${t.hgLearnMax} ${g.limits.tempMax} °C</div>
+          <div style="font-size:12.5px; font-weight:800; color:#A04D05;">${t.hgLearnFallback} (${g.limits.tempMax - 2} °C)</div>
+          <div style="font-size:12px; color:var(--muted);">${t.hgLearnNext}</div>
+        </div>
+      `}
+    </div>` + renderTabs("dashboard");
+  } else if (state.screen === "devices") {
+    const devs = [
+      ["irrigation",  "&#128167; " + t.devNames.irrigation,  t.devWaterMeta(g.limits.waterMin)],
+      ["ventilation", "&#127744; " + t.devNames.ventilation, g.devices.ventilation ? t.devVentOn(fmtTemp(g.temp)) : t.devVentOff(fmtTemp(g.temp))],
+      ["lamps",       "&#128161; " + t.devNames.lamps,       t.devLampsMeta(g.limits.light)],
+      ["heating",     "&#128293; " + t.devNames.heating,     t.devHeatMeta(g.limits.tempMin)],
+    ];
+    const modeNote = g.mode === "auto"
+      ? `<div class="ok-box" style="font-size:12px;">${t.modeAutoDesc(g.limits.soilMin, g.limits.waterMin)}</div>`
+      : `<div class="warn-box" style="font-size:12px;">${t.modeManualDesc}</div>`;
+
+    html = renderStatus() + renderHeader(t.devicesHeaderPrefix + ghLabel(g) + " (" + cropName(g.crop) + ")") + `
+    <div class="scroll">
+      ${renderGhTabs()}
+      <div class="seg">
+        <button class="seg-btn ${g.mode==='auto'?'active':''}" onclick="setMode('auto')">${t.modeAutoBtn}</button>
+        <button class="seg-btn ${g.mode==='manual'?'active':''}" onclick="setMode('manual')">${t.modeManualBtn}</button>
+      </div>
+      ${modeNote}
+      ` + devs.map(([k, name, meta]) => `
+        <div class="device-card ${g.devices[k]?'on':''} ${state.highlightDevice===k?'highlight':''}">
+          <div>
+            <div class="dev-name">${name}</div>
+            <div class="dev-meta">${meta}</div>
+          </div>
+          <button class="toggle-btn ${g.devices[k]?'on':'off'}" onclick="toggleDevice('${k}')">${g.devices[k]?'ON':'OFF'}</button>
+        </div>`).join("") + `
+      <div class="card" style="padding:11px 14px;">
+        <div style="font-size:13px; font-weight:800; margin-bottom:5px;">${t.logTitle}</div>
+        ` + g.logs.slice(0, 4).map(l => {
+          const fl = formatLogEntry(l);
+          return `<div class="log-row">
+            <span><b>${l.time}</b> ${fl.txt}</span>
+            <span class="pill-tag ${fl.isManual?'tag-ok':'tag-warn'}" style="font-size:10px;">${fl.srcLabel}</span>
+          </div>`;
+        }).join("") + `
+      </div>
+    </div>` + renderTabs("devices");
+  } else if (state.screen === "alerts") {
+    const list = state.alerts.filter(a => state.alertFilter==="all" ? true : (state.alertFilter==="active" ? !a.resolved : a.resolved));
+    html = renderStatus() + renderHeader(t.alertsSub) + `
+    <div class="scroll">
+      <div class="seg seg-3">
+        <button class="seg-btn ${state.alertFilter==='active'?'active':''}" onclick="state.alertFilter='active'; render();">${t.filterActive} (${activeAlertsCount()})</button>
+        <button class="seg-btn ${state.alertFilter==='resolved'?'active':''}" onclick="state.alertFilter='resolved'; render();">${t.filterResolved}</button>
+        <button class="seg-btn ${state.alertFilter==='all'?'active':''}" onclick="state.alertFilter='all'; render();">${t.filterAll}</button>
+      </div>
+      ${list.length === 0 ? `<div class="ok-box">${t.noAlerts}</div>` : list.map(a => {
+        const aTitle = a.id === 1 ? t.alert1Title : (a.id === 2 ? t.alert2Title : t.alert3Title);
+        const aDesc  = a.id === 1 ? t.alert1Desc  : (a.id === 2 ? t.alert2Desc  : t.alert3Desc);
+        const aTag   = a.resolved ? t.tagResolved : (a.severity === "crit" ? t.tagCrit : t.tagWarn);
+        const aTime  = a.timeKey === "yesterday" ? t.yesterday : a.timeKey;
+        return `<div class="alert-card ${a.resolved ? 'resolved' : (a.severity==='crit' ? 'crit' : '')}" onclick="go('devices', {ghIdx:${a.ghIdx}, highlightDevice:'${a.device}'})">
+          <div class="hg-top">
+            <span class="pill-tag ${a.resolved ? 'tag-ok' : (a.severity==='crit'?'tag-crit':'tag-warn')}">${aTag}</span>
+            <span style="font-size:11px; color:var(--muted); font-weight:700;">${aTime}</span>
+          </div>
+          <div style="font-size:14px; font-weight:800;">${aTitle}</div>
+          <div style="font-size:12.5px; color:var(--text);">${aDesc}</div>
+          ${!a.resolved ? `<div style="font-size:12px; font-weight:800; color:${a.severity==='crit'?'var(--red)':'#A04D05'};">${t.alertGoDevices} &#8594;</div>` : ""}
+        </div>`;
+      }).join("")}
+    </div>` + renderTabs("alerts");
+  } else if (state.screen === "history") {
+    const pText = { day: t.pDayMeta, week: t.pWeekMeta, month: t.pMonthMeta }[state.histPeriod];
+    const hv = buildHistoryView(state.histPeriod, g);
+    html = renderStatus() + renderHeader(t.historySub) + `
+    <div class="scroll">
+      <div class="seg seg-3">
+        <button class="seg-btn ${state.histPeriod==='day'?'active':''}" onclick="state.histPeriod='day'; render();">${t.pDay}</button>
+        <button class="seg-btn ${state.histPeriod==='week'?'active':''}" onclick="state.histPeriod='week'; render();">${t.pWeek}</button>
+        <button class="seg-btn ${state.histPeriod==='month'?'active':''}" onclick="state.histPeriod='month'; render();">${t.pMonth}</button>
+      </div>
+      <div class="muted-row"><span>${ghLabel(g)} - ${cropName(g.crop)}</span><span>${pText}</span></div>
+      <div class="card" style="padding:12px;">
+        <div class="muted-row" style="margin-bottom:6px;"><span style="color:var(--text); font-weight:800;">${t.chartTempTitle} (°${state.unit})</span><span>${hv.tempPeakText}</span></div>
+        ${hv.tempSvg}
+      </div>
+      <div class="card" style="padding:12px; border-color:${state.histPeriod==='day'?'var(--amber)':'var(--red)'};">
+        <div class="muted-row" style="margin-bottom:6px;"><span style="color:var(--text); font-weight:800;">${t.chartSoilTitle}</span><span style="color:${state.histPeriod==='day'?'#A04D05':'var(--red)'};">${hv.soilMinText}</span></div>
+        ${hv.soilSvg}
+      </div>
+      ${hv.summaryHtml}
+    </div>` + renderTabs("history");
+  } else if (state.screen === "settings") {
+    let errText = "";
+    if (state.settingsErrorType === "soil") errText = t.errSoil(state.settingsErrorVal);
+    else if (state.settingsErrorType === "temp") errText = t.errTemp;
+    else if (state.settingsErrorType === "water") errText = t.errWater;
+
+    html = renderStatus() + renderHeader(t.settingsTitle, "dashboard") + `
+    <div class="scroll">
+      <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+        <div style="font-size:14px; font-weight:800;">${t.cropProfileTitle}</div>
+        <div class="chip-row">
+          ${Object.entries(PROFILES).map(([k, p]) => `
+            <button class="chip ${g.crop===k?'active':''}" onclick="applyProfile('${k}')">
+              ${p[state.lang]}<small>${p.tempMin}-${p.tempMax} °C - ${t.soilShort} ${p.soilMin}-${p.soilMax}%</small>
+            </button>`).join("")}
+        </div>
+      </div>
+      <div class="card" style="display:flex; flex-direction:column; gap:9px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:14px; font-weight:800;">${t.thresholdsTitle} (${ghLabel(g)})</span>
+          <button class="demo-btn" style="background:var(--red-soft); color:var(--red); border-color:var(--red); font-size:11px; padding:4px 9px;" onclick="testInvalidSoil()">${t.testInvalidBtn}</button>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div><label class="field-label">${t.lblTMin}</label><input class="input" id="inpTMin" type="number" value="${g.limits.tempMin}"></div>
+          <div><label class="field-label">${t.lblTMax}</label><input class="input" id="inpTMax" type="number" value="${g.limits.tempMax}"></div>
+          <div><label class="field-label">${t.lblSMin}</label><input class="input ${state.settingsErrorType==='soil'?'err':''}" id="inpSMin" type="number" value="${state.settingsErrorType==='soil' ? state.settingsErrorVal : g.limits.soilMin}"></div>
+          <div><label class="field-label">${t.lblWDur}</label><input class="input" id="inpWDur" type="number" value="${g.limits.waterMin}"></div>
+        </div>
+        <div><label class="field-label">${t.lblLightSched}</label><input class="input" value="${g.limits.light}" readonly></div>
+        ${errText ? `<div class="err-box">${errText}</div>` : ""}
+        ${state.settingsSaved && !errText ? `<div class="ok-box">${t.savedBox}</div>` : ""}
+      </div>
+      <div class="card" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label class="field-label">${t.lblUnits}</label>
+          <div class="seg">
+            <button class="seg-btn ${state.unit==='C'?'active':''}" onclick="state.unit='C'; render();">°C</button>
+            <button class="seg-btn ${state.unit==='F'?'active':''}" onclick="state.unit='F'; render();">°F</button>
+          </div>
+        </div>
+        <div>
+          <label class="field-label">${t.lblLang}</label>
+          <div class="seg">
+            <button class="seg-btn ${state.lang==='RU'?'active':''}" onclick="state.lang='RU'; render();">RU</button>
+            <button class="seg-btn ${state.lang==='KZ'?'active':''}" onclick="state.lang='KZ'; render();">KZ</button>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="saveSettings()">${t.saveBtn}</button>
+      <button class="btn btn-outline" style="min-height:42px; color:var(--red); border-color:var(--red);" onclick="openDemoShortcut('login')">${t.logoutBtn}</button>
+    </div>`;
+  }
+
+  html += `<div class="toast" id="toast"></div>`;
+  app.innerHTML = html;
+}
+
+setInterval(() => {
+  state.lastUpdatedSec = (state.lastUpdatedSec % 3) + 1;
+  if (state.screen === "dashboard") {
+    const el = document.getElementById("updLbl");
+    if (el) el.textContent = T().updatedPrefix + " " + state.lastUpdatedSec + " " + T().secAgo;
+  }
+}, 1000);
+
+render();
+</script>
+</body>
+</html>
