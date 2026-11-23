@@ -1,0 +1,304 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 1060" width="1560" height="1060">
+<defs>
+<marker id="arrER" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 Z" fill="#1B5E20"/></marker>
+<marker id="arrERA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 Z" fill="#E67E22"/></marker>
+</defs>
+<rect width="1560" height="1060" fill="#F6F8F5"/>
+<rect x="0" y="0" width="1560" height="72" fill="#1B5E20"/>
+<text x="36" y="34" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">AgroGuard - PostgreSQL ER Diagram (9 Tables)</text>
+<text x="36" y="57" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" fill="#D5E8D7">Relational Schema with Owner Isolation (owner_id), 8+ Days Telemetry History, Automation Rules, Alerts &amp; Heat Guard Forecasts</text>
+<rect x="1030" y="18" width="90" height="34" rx="8" fill="#144718"/>
+<text x="1075" y="40" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="12" font-weight="700" fill="#FFE082">PK Key</text>
+<rect x="1132" y="18" width="94" height="34" rx="8" fill="#144718"/>
+<text x="1179" y="40" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="12" font-weight="700" fill="#FFCC80">FK Ref</text>
+<rect x="1238" y="18" width="286" height="34" rx="8" fill="#144718"/>
+<text x="1381" y="40" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Arrows show 1 : N Foreign Key Relations</text>
+<rect x="36" y="102" width="370" height="206" rx="10" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="36" y="102" width="370" height="42" rx="10" fill="#1B5E20"/>
+<rect x="36" y="134" width="370" height="10" fill="#1B5E20"/>
+<text x="48" y="122" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="14" font-weight="700" fill="#FFFFFF">users</text>
+<text x="48" y="137" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" fill="#DCEFE0">M1 Auth accounts (bcrypt)</text>
+<rect x="48" y="151" width="26" height="16" rx="4" fill="#FFF3CD" stroke="#D39E00" stroke-width="0.8"/>
+<text x="61" y="162.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#8A6100">PK</text>
+<text x="82" y="163" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">id</text>
+<text x="394" y="163" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">SERIAL</text>
+<rect x="38" y="170" width="366" height="22" fill="#F8FAF7"/>
+<text x="82" y="185" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">username</text>
+<text x="394" y="185" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(50) UNIQUE</text>
+<text x="82" y="207" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">password_hash</text>
+<text x="394" y="207" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(255)</text>
+<rect x="38" y="214" width="366" height="22" fill="#F8FAF7"/>
+<text x="82" y="229" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">full_name</text>
+<text x="394" y="229" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(120)</text>
+<text x="82" y="251" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">temp_unit</text>
+<text x="394" y="251" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">CHAR(1) 'C'|'F'</text>
+<rect x="38" y="258" width="366" height="22" fill="#F8FAF7"/>
+<text x="82" y="273" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">language</text>
+<text x="394" y="273" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">CHAR(2) 'ru'|'kz'</text>
+<text x="82" y="295" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">created_at</text>
+<text x="394" y="295" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">TIMESTAMPTZ</text>
+<rect x="496" y="102" width="460" height="294" rx="10" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="496" y="102" width="460" height="42" rx="10" fill="#1B5E20"/>
+<rect x="496" y="134" width="460" height="10" fill="#1B5E20"/>
+<text x="508" y="122" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="14" font-weight="700" fill="#FFFFFF">greenhouses</text>
+<text x="508" y="137" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" fill="#DCEFE0">Core entity (3 greenhouses of Serik)</text>
+<rect x="508" y="151" width="26" height="16" rx="4" fill="#FFF3CD" stroke="#D39E00" stroke-width="0.8"/>
+<text x="521" y="162.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#8A6100">PK</text>
+<text x="542" y="163" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">id</text>
+<text x="944" y="163" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">SERIAL</text>
+<rect x="498" y="170" width="456" height="22" fill="#F8FAF7"/>
+<rect x="508" y="173" width="26" height="16" rx="4" fill="#FDF2E6" stroke="#E67E22" stroke-width="0.8"/>
+<text x="521" y="184.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#A04D05">FK</text>
+<text x="542" y="185" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">owner_id</text>
+<text x="944" y="185" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT -&gt; users.id</text>
+<rect x="508" y="195" width="26" height="16" rx="4" fill="#FDF2E6" stroke="#E67E22" stroke-width="0.8"/>
+<text x="521" y="206.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#A04D05">FK</text>
+<text x="542" y="207" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">crop_profile_id</text>
+<text x="944" y="207" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT -&gt; crop_profiles.id</text>
+<rect x="498" y="214" width="456" height="22" fill="#F8FAF7"/>
+<text x="542" y="229" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">name</text>
+<text x="944" y="229" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(100)</text>
+<text x="542" y="251" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">area_sqm</text>
+<text x="944" y="251" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(7,2)</text>
+<rect x="498" y="258" width="456" height="22" fill="#F8FAF7"/>
+<text x="542" y="273" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">mode</text>
+<text x="944" y="273" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(10) 'auto'|'manual'</text>
+<text x="542" y="295" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">min/max_air_temp</text>
+<text x="944" y="295" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(4,1) x2</text>
+<rect x="498" y="302" width="456" height="22" fill="#F8FAF7"/>
+<text x="542" y="317" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">min/max_air_humidity</text>
+<text x="944" y="317" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(4,1) x2</text>
+<text x="542" y="339" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">min/max_soil_moisture</text>
+<text x="944" y="339" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(4,1) x2</text>
+<rect x="498" y="346" width="456" height="22" fill="#F8FAF7"/>
+<text x="542" y="361" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">min_light_lux</text>
+<text x="944" y="361" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT</text>
+<text x="542" y="383" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">updated_at</text>
+<text x="944" y="383" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">TIMESTAMPTZ</text>
+<rect x="1046" y="102" width="478" height="228" rx="10" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="1046" y="102" width="478" height="42" rx="10" fill="#2E7D32"/>
+<rect x="1046" y="134" width="478" height="10" fill="#2E7D32"/>
+<text x="1058" y="122" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="14" font-weight="700" fill="#FFFFFF">crop_profiles</text>
+<text x="1058" y="137" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" fill="#DCEFE0">Cold-start presets (Tomatoes, Cucumbers...)</text>
+<rect x="1058" y="151" width="26" height="16" rx="4" fill="#FFF3CD" stroke="#D39E00" stroke-width="0.8"/>
+<text x="1071" y="162.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#8A6100">PK</text>
+<text x="1092" y="163" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">id</text>
+<text x="1512" y="163" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">SERIAL</text>
+<rect x="1048" y="170" width="474" height="22" fill="#F8FAF7"/>
+<text x="1092" y="185" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">code</text>
+<text x="1512" y="185" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(32) UNIQUE</text>
+<text x="1092" y="207" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">name_ru / name_kz</text>
+<text x="1512" y="207" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(80) x2</text>
+<rect x="1048" y="214" width="474" height="22" fill="#F8FAF7"/>
+<text x="1092" y="229" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">opt_temp_min / max</text>
+<text x="1512" y="229" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(4,1) x2</text>
+<text x="1092" y="251" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">opt_humidity_min / max</text>
+<text x="1512" y="251" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(4,1) x2</text>
+<rect x="1048" y="258" width="474" height="22" fill="#F8FAF7"/>
+<text x="1092" y="273" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">opt_soil_min / max</text>
+<text x="1512" y="273" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(4,1) x2</text>
+<text x="1092" y="295" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">light_hours_start / end</text>
+<text x="1512" y="295" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">SMALLINT (0..23)</text>
+<rect x="1048" y="302" width="474" height="22" fill="#F8FAF7"/>
+<text x="1092" y="317" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">default_watering_min</text>
+<text x="1512" y="317" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">SMALLINT</text>
+<rect x="36" y="446" width="396" height="206" rx="10" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="36" y="446" width="396" height="42" rx="10" fill="#1B5E20"/>
+<rect x="36" y="478" width="396" height="10" fill="#1B5E20"/>
+<text x="48" y="466" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="14" font-weight="700" fill="#FFFFFF">devices</text>
+<text x="48" y="481" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" fill="#DCEFE0">M3: 4 actuators per greenhouse</text>
+<rect x="48" y="495" width="26" height="16" rx="4" fill="#FFF3CD" stroke="#D39E00" stroke-width="0.8"/>
+<text x="61" y="506.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#8A6100">PK</text>
+<text x="82" y="507" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">id</text>
+<text x="420" y="507" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">SERIAL</text>
+<rect x="38" y="514" width="392" height="22" fill="#F8FAF7"/>
+<rect x="48" y="517" width="26" height="16" rx="4" fill="#FDF2E6" stroke="#E67E22" stroke-width="0.8"/>
+<text x="61" y="528.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#A04D05">FK</text>
+<text x="82" y="529" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">greenhouse_id</text>
+<text x="420" y="529" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT -&gt; greenhouses.id</text>
+<text x="82" y="551" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">device_type</text>
+<text x="420" y="551" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(20) UNIQUE/gh</text>
+<rect x="38" y="558" width="392" height="22" fill="#F8FAF7"/>
+<text x="82" y="573" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">display_name</text>
+<text x="420" y="573" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(60)</text>
+<text x="82" y="595" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">is_on</text>
+<text x="420" y="595" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">BOOLEAN DEFAULT FALSE</text>
+<rect x="38" y="602" width="392" height="22" fill="#F8FAF7"/>
+<text x="82" y="617" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">auto_off_at</text>
+<text x="420" y="617" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">TIMESTAMPTZ NULL</text>
+<text x="82" y="639" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">updated_at</text>
+<text x="420" y="639" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">TIMESTAMPTZ</text>
+<rect x="506" y="446" width="440" height="206" rx="10" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="506" y="446" width="440" height="42" rx="10" fill="#1565C0"/>
+<rect x="506" y="478" width="440" height="10" fill="#1565C0"/>
+<text x="518" y="466" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="14" font-weight="700" fill="#FFFFFF">sensor_readings</text>
+<text x="518" y="481" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" fill="#DCEFE0">M2/M6: 8+ days telemetry + SQL demo</text>
+<rect x="518" y="495" width="26" height="16" rx="4" fill="#FFF3CD" stroke="#D39E00" stroke-width="0.8"/>
+<text x="531" y="506.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#8A6100">PK</text>
+<text x="552" y="507" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">id</text>
+<text x="934" y="507" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">BIGSERIAL</text>
+<rect x="508" y="514" width="436" height="22" fill="#F8FAF7"/>
+<rect x="518" y="517" width="26" height="16" rx="4" fill="#FDF2E6" stroke="#E67E22" stroke-width="0.8"/>
+<text x="531" y="528.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#A04D05">FK</text>
+<text x="552" y="529" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">greenhouse_id</text>
+<text x="934" y="529" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT -&gt; greenhouses.id</text>
+<text x="552" y="551" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">air_temp_c</text>
+<text x="934" y="551" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(4,1)</text>
+<rect x="508" y="558" width="436" height="22" fill="#F8FAF7"/>
+<text x="552" y="573" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">air_humidity_pct</text>
+<text x="934" y="573" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(4,1)</text>
+<text x="552" y="595" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">soil_moisture_pct</text>
+<text x="934" y="595" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(4,1)</text>
+<rect x="508" y="602" width="436" height="22" fill="#F8FAF7"/>
+<text x="552" y="617" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">light_lux</text>
+<text x="934" y="617" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT</text>
+<text x="552" y="639" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">recorded_at</text>
+<text x="934" y="639" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">TIMESTAMPTZ (IDX)</text>
+<rect x="1020" y="446" width="504" height="228" rx="10" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="1020" y="446" width="504" height="42" rx="10" fill="#2E7D32"/>
+<rect x="1020" y="478" width="504" height="10" fill="#2E7D32"/>
+<text x="1032" y="466" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="14" font-weight="700" fill="#FFFFFF">automation_rules</text>
+<text x="1032" y="481" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" fill="#DCEFE0">M4: Auto thresholds &amp; schedules</text>
+<rect x="1032" y="495" width="26" height="16" rx="4" fill="#FFF3CD" stroke="#D39E00" stroke-width="0.8"/>
+<text x="1045" y="506.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#8A6100">PK</text>
+<text x="1066" y="507" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">id</text>
+<text x="1512" y="507" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">SERIAL</text>
+<rect x="1022" y="514" width="500" height="22" fill="#F8FAF7"/>
+<rect x="1032" y="517" width="26" height="16" rx="4" fill="#FDF2E6" stroke="#E67E22" stroke-width="0.8"/>
+<text x="1045" y="528.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#A04D05">FK</text>
+<text x="1066" y="529" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">greenhouse_id</text>
+<text x="1512" y="529" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT -&gt; greenhouses.id</text>
+<text x="1066" y="551" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">rule_type</text>
+<text x="1512" y="551" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(24) 'water'|'vent'|'light'|'heat'</text>
+<rect x="1022" y="558" width="500" height="22" fill="#F8FAF7"/>
+<text x="1066" y="573" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">trigger_param</text>
+<text x="1512" y="573" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(24)</text>
+<text x="1066" y="595" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">threshold_value</text>
+<text x="1512" y="595" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(6,2)</text>
+<rect x="1022" y="602" width="500" height="22" fill="#F8FAF7"/>
+<text x="1066" y="617" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">duration_minutes</text>
+<text x="1512" y="617" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">SMALLINT</text>
+<text x="1066" y="639" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">schedule_hour</text>
+<text x="1512" y="639" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">SMALLINT NULL</text>
+<rect x="1022" y="646" width="500" height="22" fill="#F8FAF7"/>
+<text x="1066" y="661" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">is_enabled</text>
+<text x="1512" y="661" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">BOOLEAN DEFAULT TRUE</text>
+<rect x="36" y="740" width="424" height="228" rx="10" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="36" y="740" width="424" height="42" rx="10" fill="#E67E22"/>
+<rect x="36" y="772" width="424" height="10" fill="#E67E22"/>
+<text x="48" y="760" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="14" font-weight="700" fill="#FFFFFF">device_events</text>
+<text x="48" y="775" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" fill="#DCEFE0">M3 Audit log of every ON/OFF command</text>
+<rect x="48" y="789" width="26" height="16" rx="4" fill="#FFF3CD" stroke="#D39E00" stroke-width="0.8"/>
+<text x="61" y="800.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#8A6100">PK</text>
+<text x="82" y="801" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">id</text>
+<text x="448" y="801" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">BIGSERIAL</text>
+<rect x="38" y="808" width="420" height="22" fill="#F8FAF7"/>
+<rect x="48" y="811" width="26" height="16" rx="4" fill="#FDF2E6" stroke="#E67E22" stroke-width="0.8"/>
+<text x="61" y="822.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#A04D05">FK</text>
+<text x="82" y="823" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">device_id</text>
+<text x="448" y="823" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT -&gt; devices.id</text>
+<rect x="48" y="833" width="26" height="16" rx="4" fill="#FDF2E6" stroke="#E67E22" stroke-width="0.8"/>
+<text x="61" y="844.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#A04D05">FK</text>
+<text x="82" y="845" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">greenhouse_id</text>
+<text x="448" y="845" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT -&gt; greenhouses.id</text>
+<rect x="38" y="852" width="420" height="22" fill="#F8FAF7"/>
+<rect x="48" y="855" width="26" height="16" rx="4" fill="#FDF2E6" stroke="#E67E22" stroke-width="0.8"/>
+<text x="61" y="866.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#A04D05">FK</text>
+<text x="82" y="867" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">triggered_by_user_id</text>
+<text x="448" y="867" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT NULL -&gt; users.id</text>
+<text x="82" y="889" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">new_state</text>
+<text x="448" y="889" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">BOOLEAN</text>
+<rect x="38" y="896" width="420" height="22" fill="#F8FAF7"/>
+<text x="82" y="911" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">source</text>
+<text x="448" y="911" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(16) 'manual'|'auto'|'heat_guard'</text>
+<text x="82" y="933" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">note</text>
+<text x="448" y="933" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(180)</text>
+<rect x="38" y="940" width="420" height="22" fill="#F8FAF7"/>
+<text x="82" y="955" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">created_at</text>
+<text x="448" y="955" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">TIMESTAMPTZ</text>
+<rect x="516" y="740" width="440" height="206" rx="10" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="516" y="740" width="440" height="42" rx="10" fill="#D32F2F"/>
+<rect x="516" y="772" width="440" height="10" fill="#D32F2F"/>
+<text x="528" y="760" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="14" font-weight="700" fill="#FFFFFF">alerts</text>
+<text x="528" y="775" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" fill="#DCEFE0">M5 Notifications (Warning / Critical)</text>
+<rect x="528" y="789" width="26" height="16" rx="4" fill="#FFF3CD" stroke="#D39E00" stroke-width="0.8"/>
+<text x="541" y="800.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#8A6100">PK</text>
+<text x="562" y="801" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">id</text>
+<text x="944" y="801" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">BIGSERIAL</text>
+<rect x="518" y="808" width="436" height="22" fill="#F8FAF7"/>
+<rect x="528" y="811" width="26" height="16" rx="4" fill="#FDF2E6" stroke="#E67E22" stroke-width="0.8"/>
+<text x="541" y="822.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#A04D05">FK</text>
+<text x="562" y="823" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">greenhouse_id</text>
+<text x="944" y="823" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT -&gt; greenhouses.id</text>
+<text x="562" y="845" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">severity</text>
+<text x="944" y="845" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(12) 'warning'|'critical'</text>
+<rect x="518" y="852" width="436" height="22" fill="#F8FAF7"/>
+<text x="562" y="867" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">alert_type</text>
+<text x="944" y="867" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(24) 'overheat'|'heat_guard'|'dry'</text>
+<text x="562" y="889" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">message_ru</text>
+<text x="944" y="889" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(240)</text>
+<rect x="518" y="896" width="436" height="22" fill="#F8FAF7"/>
+<text x="562" y="911" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">is_resolved</text>
+<text x="944" y="911" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">BOOLEAN DEFAULT FALSE</text>
+<text x="562" y="933" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">created_at / resolved_at</text>
+<text x="944" y="933" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">TIMESTAMPTZ x2</text>
+<rect x="1012" y="740" width="512" height="228" rx="10" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="1012" y="740" width="512" height="42" rx="10" fill="#1B5E20"/>
+<rect x="1012" y="772" width="512" height="10" fill="#1B5E20"/>
+<text x="1024" y="760" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="14" font-weight="700" fill="#FFFFFF">heat_guard_forecasts</text>
+<text x="1024" y="775" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10.5" fill="#DCEFE0">Signature Feature: 2h OLS Regression</text>
+<rect x="1024" y="789" width="26" height="16" rx="4" fill="#FFF3CD" stroke="#D39E00" stroke-width="0.8"/>
+<text x="1037" y="800.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#8A6100">PK</text>
+<text x="1058" y="801" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">id</text>
+<text x="1512" y="801" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">BIGSERIAL</text>
+<rect x="1014" y="808" width="508" height="22" fill="#F8FAF7"/>
+<rect x="1024" y="811" width="26" height="16" rx="4" fill="#FDF2E6" stroke="#E67E22" stroke-width="0.8"/>
+<text x="1037" y="822.5" text-anchor="middle" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="9.5" font-weight="700" fill="#A04D05">FK</text>
+<text x="1058" y="823" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="700" fill="#1A1F1C">greenhouse_id</text>
+<text x="1512" y="823" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT -&gt; greenhouses.id</text>
+<text x="1058" y="845" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">slope_c_per_min</text>
+<text x="1512" y="845" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(6,4)</text>
+<rect x="1014" y="852" width="508" height="22" fill="#F8FAF7"/>
+<text x="1058" y="867" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">r_squared</text>
+<text x="1512" y="867" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(4,3) (&gt;= 0.6 valid)</text>
+<text x="1058" y="889" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">predicted_temp_2h</text>
+<text x="1512" y="889" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">NUMERIC(4,1)</text>
+<rect x="1014" y="896" width="508" height="22" fill="#F8FAF7"/>
+<text x="1058" y="911" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">eta_minutes</text>
+<text x="1512" y="911" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">INT NULL</text>
+<text x="1058" y="933" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">risk_level</text>
+<text x="1512" y="933" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">VARCHAR(16) 'safe'|'warn'|'crit'|'learn'</text>
+<rect x="1014" y="940" width="508" height="22" fill="#F8FAF7"/>
+<text x="1058" y="955" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11.5" font-weight="400" fill="#1A1F1C">computed_at</text>
+<text x="1512" y="955" text-anchor="end" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="10.5" fill="#526056">TIMESTAMPTZ</text>
+<path d="M406 164 L492 164" fill="none" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrER)"/>
+<text x="412" y="156" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#1B5E20">1</text>
+<text x="476" y="156" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#1B5E20">N</text>
+<path d="M1046 186 L960 186" fill="none" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrER)"/>
+<text x="1030" y="178" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#1B5E20">1</text>
+<text x="968" y="178" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#1B5E20">N</text>
+<line x1="726" y1="396" x2="726" y2="418" stroke="#1B5E20" stroke-width="2.2"/>
+<text x="734" y="411" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#1B5E20">1</text>
+<line x1="234" y1="418" x2="1272" y2="418" stroke="#1B5E20" stroke-width="2.2"/>
+<line x1="234" y1="418" x2="234" y2="442" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrER)"/>
+<text x="242" y="438" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#1B5E20">N</text>
+<line x1="726" y1="418" x2="726" y2="442" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrER)"/>
+<text x="734" y="438" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#1B5E20">N</text>
+<line x1="1272" y1="418" x2="1272" y2="442" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrER)"/>
+<text x="1280" y="438" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#1B5E20">N</text>
+<path d="M982 418 L982 708" fill="none" stroke="#1B5E20" stroke-width="2"/>
+<path d="M982 708 L736 708 L736 736" fill="none" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrER)"/>
+<text x="744" y="732" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#1B5E20">N</text>
+<path d="M982 708 L1268 708 L1268 736" fill="none" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrER)"/>
+<text x="1276" y="732" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#1B5E20">N</text>
+<path d="M234 652 L234 736" fill="none" stroke="#E67E22" stroke-width="2" marker-end="url(#arrERA)"/>
+<text x="242" y="668" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#E67E22">1</text>
+<text x="242" y="730" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#E67E22">N</text>
+<path d="M36 240 L14 240 L14 855 L32 855" fill="none" stroke="#E67E22" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrERA)"/>
+<text x="19" y="232" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#E67E22">1</text>
+<text x="3" y="845" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#E67E22">0..N</text>
+<path d="M478 418 L478 820 L464 820" fill="none" stroke="#1B5E20" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#arrER)"/>
+<text x="484" y="814" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="11" font-weight="700" fill="#1B5E20">N</text>
+<rect x="36" y="998" width="1488" height="44" rx="10" fill="#E8F1E9" stroke="#1B5E20" stroke-width="1.2"/>
+<text x="56" y="1025" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1B5E20">Key Constraints:  CHECK(min_air_temp &lt; max_air_temp)  |  CHECK(soil_moisture BETWEEN 0 AND 100)  |  INDEX idx_sr_gh_time(greenhouse_id, recorded_at DESC)  |  Seed: 8+ days history</text>
+</svg>
