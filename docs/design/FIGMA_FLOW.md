@@ -2,7 +2,7 @@
 
 **Owner:** Maxim Li (Mobile Developer - .NET MAUI)  
 **Co-author (Screens 04, 06, 07, 08):** Ilnur Garifov  
-**Figma Prototype Link:** `[INSERT FIGMA LINK HERE]`  
+**Figma Prototype Link:** https://www.figma.com/design/9NNmGFH6OFR9xb7BcEw9Jh/AgroGuard-%E2%80%94-Interactive-UI-Prototype--Maxim-n-Ilnur-?node-id=0-1&t=eH1Fj3Bx6Vhk9nUl-1  
 **Interactive HTML Prototype:** `prototype/index.html` (frame `390 x 844`, Russian UI)
 
 ---
