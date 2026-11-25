@@ -2,7 +2,7 @@
 
 **Owner:** Maxim Li (Mobile Developer - .NET MAUI)  
 **Co-author (Screens 04, 06, 07, 08):** Ilnur Garifov  
-**Figma Prototype Link:** `[INSERT FIGMA LINK HERE]`  
+**Figma Prototype Link:** https://www.figma.com/design/9NNmGFH6OFR9xb7BcEw9Jh/AgroGuard-%E2%80%94-Interactive-UI-Prototype--Maxim-n-Ilnur-?t=3QxbebN2A01O0MHn-0  
 **Interactive HTML Prototype:** `prototype/index.html` (frame `390 x 844`, Russian UI)
 
 ---
@@ -63,4 +63,4 @@ Follow these steps to create the shareable Figma prototype link in under 15 minu
    - Connect `"Повторить подключение"` on `03_dashboard_offline` -> `02_dashboard`.
 5. **Share & Paste Link:**
    - Click **Share** -> set **Anyone with the link can view** -> click **Copy link**.
-   - Replace `[INSERT FIGMA LINK HERE]` at the top of this file, in `README.md`, and in `docs/AgroGuard_Week2_Design.pdf`.
+   - Published prototype link (also linked in `README.md` and `docs/AgroGuard_Week2_Design.pdf`): https://www.figma.com/design/9NNmGFH6OFR9xb7BcEw9Jh/AgroGuard-%E2%80%94-Interactive-UI-Prototype--Maxim-n-Ilnur-?t=3QxbebN2A01O0MHn-0
