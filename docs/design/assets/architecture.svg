@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 840" width="1440" height="840">
+<defs>
+<marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 Z" fill="#1B5E20"/></marker>
+<marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 Z" fill="#E67E22"/></marker>
+<marker id="arrB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 Z" fill="#1565C0"/></marker>
+</defs>
+<rect width="1440" height="840" fill="#F6F8F5"/>
+<rect x="0" y="0" width="1440" height="72" fill="#1B5E20"/>
+<text x="36" y="34" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">AgroGuard - System Architecture &amp; Data Flow</text>
+<text x="36" y="57" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="500" fill="#D5E8D7">4-Layer Client-Server Architecture (.NET MAUI -> Data Layer -> FastAPI -> PostgreSQL) + Irrigation Command Trace</text>
+<rect x="1010" y="18" width="195" height="36" rx="18" fill="#144718"/>
+<line x1="1026" y1="36" x2="1056" y2="36" stroke="#A5D6A7" stroke-width="3"/>
+<text x="1064" y="41" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Standard API Flow</text>
+<rect x="1218" y="18" width="190" height="36" rx="18" fill="#E67E22"/>
+<line x1="1234" y1="36" x2="1264" y2="36" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="5,3"/>
+<text x="1272" y="41" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">"Полив" Trace (1-6)</text>
+<rect x="32" y="92" width="290" height="520" rx="14" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="32" y="92" width="290" height="52" rx="14" fill="#1B5E20"/>
+<rect x="32" y="130" width="290" height="14" fill="#1B5E20"/>
+<text x="48" y="115" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="0.5">1. PRESENTATION LAYER</text>
+<text x="48" y="134" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#E3F2E5">.NET MAUI Views (Android)</text>
+<rect x="378" y="92" width="286" height="520" rx="14" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="378" y="92" width="286" height="52" rx="14" fill="#2E7D32"/>
+<rect x="378" y="130" width="286" height="14" fill="#2E7D32"/>
+<text x="394" y="115" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="0.5">2. DATA &amp; STATE LAYER</text>
+<text x="394" y="134" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#E3F2E5">MVVM ViewModels + ApiClient</text>
+<rect x="720" y="92" width="344" height="520" rx="14" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="720" y="92" width="344" height="52" rx="14" fill="#1B5E20"/>
+<rect x="720" y="130" width="344" height="14" fill="#1B5E20"/>
+<text x="736" y="115" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="0.5">3. BACKEND SERVICE</text>
+<text x="736" y="134" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#E3F2E5">FastAPI (Python 3.12)</text>
+<rect x="1120" y="92" width="288" height="520" rx="14" fill="#FFFFFF" stroke="#C8D6CA" stroke-width="1.5"/>
+<rect x="1120" y="92" width="288" height="52" rx="14" fill="#1565C0"/>
+<rect x="1120" y="130" width="288" height="14" fill="#1565C0"/>
+<text x="1136" y="115" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF" letter-spacing="0.5">4. DATABASE LAYER</text>
+<text x="1136" y="134" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#E3F2E5">PostgreSQL 16 (No Hardware)</text>
+<rect x="48" y="160" width="258" height="76" rx="10" fill="#F6F8F5" stroke="#C8D6CA" stroke-width="1.3"/>
+<text x="60" y="181" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1A1F1C">Login &amp; Dashboard (M1, M2)</text>
+<text x="60" y="199" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">3 greenhouses switcher, 5s status</text>
+<text x="60" y="215" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">4 live sensors + update time</text>
+<rect x="48" y="250" width="258" height="86" rx="10" fill="#FDF2E6" stroke="#E67E22" stroke-width="2.2"/>
+<text x="60" y="271" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#9A4D06">Devices &amp; Modes (M3, M4)</text>
+<text x="60" y="289" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Switch Auto / Manual + 4 devices</text>
+<text x="60" y="305" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">CTA: Tap &quot;Полив ON&quot; button</text>
+<text x="60" y="321" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Instant UI confirmation + log</text>
+<circle cx="294" cy="262" r="12" fill="#E67E22"/>
+<text x="294" y="266" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">1</text>
+<rect x="48" y="350" width="258" height="76" rx="10" fill="#F6F8F5" stroke="#C8D6CA" stroke-width="1.3"/>
+<text x="60" y="371" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1A1F1C">Heat Guard &amp; Alerts (M5)</text>
+<text x="60" y="389" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">2h regression chart, ETA, R^2</text>
+<text x="60" y="405" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Tap alert -&gt; Devices screen</text>
+<rect x="48" y="440" width="258" height="74" rx="10" fill="#F6F8F5" stroke="#C8D6CA" stroke-width="1.3"/>
+<text x="60" y="461" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1A1F1C">History &amp; Settings (M6, M7)</text>
+<text x="60" y="479" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Day/Week/Month, 2 charts</text>
+<text x="60" y="495" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Crop Profiles, C/F, RU/KZ, valid.</text>
+<rect x="48" y="528" width="258" height="68" rx="10" fill="#FDECEC" stroke="#D32F2F" stroke-width="1.3"/>
+<text x="60" y="549" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#D32F2F">Offline Banner (M8)</text>
+<text x="60" y="567" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Red &quot;Нет связи с теплицей&quot;</text>
+<text x="60" y="583" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Locks commands, no crash</text>
+<rect x="394" y="160" width="254" height="108" rx="10" fill="#F6F8F5" stroke="#C8D6CA" stroke-width="1.3"/>
+<text x="406" y="181" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1A1F1C">MVVM ViewModels</text>
+<text x="406" y="199" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">ObservableState (C#)</text>
+<text x="406" y="215" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Client-side validation (-50% block)</text>
+<text x="406" y="231" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Triggers refresh every 3s</text>
+<text x="406" y="247" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Updates UI on 200 OK</text>
+<circle cx="636" cy="172" r="12" fill="#E67E22"/>
+<text x="636" y="176" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">6</text>
+<rect x="394" y="286" width="254" height="122" rx="10" fill="#FDF2E6" stroke="#E67E22" stroke-width="2.2"/>
+<text x="406" y="307" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#9A4D06">ApiClient (Data Layer)</text>
+<text x="406" y="325" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Strictly separated from XAML UI</text>
+<text x="406" y="341" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Attaches Authorization: Bearer JWT</text>
+<text x="406" y="357" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">POST /devices/irrigation</text>
+<text x="406" y="373" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">JSON serialization + 5s timeout</text>
+<circle cx="636" cy="298" r="12" fill="#E67E22"/>
+<text x="636" y="302" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">2</text>
+<rect x="394" y="426" width="254" height="82" rx="10" fill="#F6F8F5" stroke="#C8D6CA" stroke-width="1.3"/>
+<text x="406" y="447" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1A1F1C">SecureStorage (Token)</text>
+<text x="406" y="465" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Encrypted JWT on Android</text>
+<text x="406" y="481" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Auto-logout on HTTP 401</text>
+<rect x="394" y="522" width="254" height="74" rx="10" fill="#FDECEC" stroke="#D32F2F" stroke-width="1.3"/>
+<text x="406" y="543" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#D32F2F">Connectivity Monitor (M8)</text>
+<text x="406" y="561" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Detects offline / API timeout</text>
+<text x="406" y="577" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Keeps last cached readings</text>
+<rect x="736" y="160" width="312" height="92" rx="10" fill="#FDF2E6" stroke="#E67E22" stroke-width="2.0"/>
+<text x="748" y="181" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#9A4D06">Auth &amp; Owner Guard (M1)</text>
+<text x="748" y="199" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">JWT verification + bcrypt hashes</text>
+<text x="748" y="215" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Checks greenhouse.owner_id == user.id</text>
+<text x="748" y="231" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Returns 404/403 for foreign greenhouse</text>
+<circle cx="1036" cy="172" r="12" fill="#E67E22"/>
+<text x="1036" y="176" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">3</text>
+<rect x="736" y="268" width="312" height="96" rx="10" fill="#FDF2E6" stroke="#E67E22" stroke-width="2.0"/>
+<text x="748" y="289" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#9A4D06">REST API Routers (Pydantic v2)</text>
+<text x="748" y="307" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">/api/auth/*, /api/greenhouses/*</text>
+<text x="748" y="323" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Validates ranges (422 on invalid)</text>
+<text x="748" y="339" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">POST /devices/{type} -&gt; writes DB</text>
+<text x="748" y="355" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Returns 200 OK JSON (&lt; 1 sec)</text>
+<circle cx="1036" cy="280" r="12" fill="#E67E22"/>
+<text x="1036" y="284" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">5</text>
+<rect x="736" y="380" width="312" height="104" rx="10" fill="#E8F1E9" stroke="#1B5E20" stroke-width="1.8"/>
+<text x="748" y="401" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1B5E20">Heat Guard Engine (Signature)</text>
+<text x="748" y="419" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Runs every 5 min on 2h temp window</text>
+<text x="748" y="435" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">OLS linear regression: T(t) = a + b*t</text>
+<text x="748" y="451" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Filter R^2 &gt;= 0.6; ETA=(T_max-T_now)/b</text>
+<text x="748" y="467" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Cold start: Crop Profiles (T_max - 2 C)</text>
+<rect x="736" y="500" width="312" height="96" rx="10" fill="#F6F8F5" stroke="#C8D6CA" stroke-width="1.3"/>
+<text x="748" y="521" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1A1F1C">Automation &amp; Alerts Loop (M4, M5)</text>
+<text x="748" y="539" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Background async worker (FastAPI)</text>
+<text x="748" y="555" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Auto: soil&lt;min-&gt;water; Critical-&gt;vents</text>
+<text x="748" y="571" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Creates/resolves Warning &amp; Critical</text>
+<text x="748" y="587" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Runs even when mobile app is offline</text>
+<rect x="1136" y="160" width="256" height="76" rx="10" fill="#F6F8F5" stroke="#C8D6CA" stroke-width="1.3"/>
+<text x="1148" y="181" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1A1F1C">Identity &amp; Profiles</text>
+<text x="1148" y="199" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">users (bcrypt, role)</text>
+<text x="1148" y="215" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">greenhouses (owner_id, mode)</text>
+<text x="1148" y="231" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">crop_profiles (4 presets)</text>
+<rect x="1136" y="250" width="256" height="94" rx="10" fill="#FDF2E6" stroke="#E67E22" stroke-width="2.2"/>
+<text x="1148" y="271" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#9A4D06">Devices &amp; Audit Log</text>
+<text x="1148" y="289" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">devices (is_on, updated_at)</text>
+<text x="1148" y="305" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">device_events (command history)</text>
+<text x="1148" y="321" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">UPDATE + INSERT in 1 transaction</text>
+<circle cx="1380" cy="262" r="12" fill="#E67E22"/>
+<text x="1380" y="266" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">4</text>
+<rect x="1136" y="358" width="256" height="76" rx="10" fill="#F6F8F5" stroke="#C8D6CA" stroke-width="1.3"/>
+<text x="1148" y="379" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1A1F1C">Telemetry History (M6)</text>
+<text x="1148" y="397" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">sensor_readings (8+ days seed)</text>
+<text x="1148" y="413" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">4 params indexed by timestamp</text>
+<rect x="1136" y="448" width="256" height="72" rx="10" fill="#F6F8F5" stroke="#C8D6CA" stroke-width="1.3"/>
+<text x="1148" y="469" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1A1F1C">Rules, Alerts &amp; Forecasts</text>
+<text x="1148" y="487" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">automation_rules, alerts</text>
+<text x="1148" y="503" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">heat_guard_forecasts</text>
+<rect x="1136" y="532" width="256" height="64" rx="10" fill="#E8F1FC" stroke="#1565C0" stroke-width="1.6"/>
+<text x="1148" y="553" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1565C0">Defense Testing: psql / DBeaver</text>
+<text x="1148" y="571" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Direct SQL UPDATE (no simulator)</text>
+<text x="1148" y="587" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11" fill="#526056">Triggers M4 automation &amp; M5 alerts</text>
+<line x1="306" y1="196" x2="390" y2="196" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrG)" marker-start="url(#arrG)"/>
+<text x="348" y="189" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#1B5E20">Binding</text>
+<path d="M306 298 L348 298 L348 332 L390 332" fill="none" stroke="#E67E22" stroke-width="3" stroke-dasharray="6,3" marker-end="url(#arrA)"/>
+<text x="348" y="290" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#E67E22">Cmd</text>
+<line x1="394" y1="560" x2="310" y2="560" stroke="#D32F2F" stroke-width="2" stroke-dasharray="4,3"/>
+<line x1="648" y1="312" x2="732" y2="312" stroke="#E67E22" stroke-width="3" stroke-dasharray="6,3" marker-end="url(#arrA)"/>
+<text x="690" y="303" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#E67E22">POST+JWT</text>
+<line x1="736" y1="342" x2="652" y2="342" stroke="#1B5E20" stroke-width="2.2" marker-end="url(#arrG)"/>
+<text x="694" y="357" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#1B5E20">200 JSON</text>
+<line x1="892" y1="268" x2="892" y2="255" stroke="#E67E22" stroke-width="2.2" marker-end="url(#arrA)"/>
+<line x1="1048" y1="296" x2="1132" y2="296" stroke="#E67E22" stroke-width="3" stroke-dasharray="6,3" marker-end="url(#arrA)"/>
+<text x="1090" y="287" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="800" fill="#E67E22">SQL TX</text>
+<line x1="1048" y1="418" x2="1132" y2="418" stroke="#1B5E20" stroke-width="2" marker-end="url(#arrG)" marker-start="url(#arrG)"/>
+<text x="1090" y="410" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#1B5E20">asyncpg</text>
+<line x1="1048" y1="538" x2="1132" y2="538" stroke="#1565C0" stroke-width="2" marker-end="url(#arrB)" marker-start="url(#arrB)"/>
+<text x="1090" y="530" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#1565C0">Poll 5s</text>
+<rect x="32" y="632" width="1376" height="184" rx="14" fill="#FDF2E6" stroke="#E67E22" stroke-width="2"/>
+<rect x="32" y="632" width="1376" height="36" rx="14" fill="#E67E22"/>
+<rect x="32" y="654" width="1376" height="14" fill="#E67E22"/>
+<text x="50" y="655" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF">END-TO-END TRACE: Нажатие кнопки "Полив" (отклик UI &lt; 1 сек, 6 шагов)</text>
+<rect x="50" y="682" width="204" height="118" rx="10" fill="#FFFFFF" stroke="#E7C29C" stroke-width="1.4"/>
+<circle cx="70" cy="704" r="13" fill="#E67E22"/>
+<text x="70" y="709" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">1</text>
+<text x="90" y="708" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="800" fill="#1A1F1C">UI Tap (MAUI)</text>
+<text x="62" y="738" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">Серик нажимает</text>
+<text x="62" y="756" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">&quot;Полив ON&quot; на экране</text>
+<text x="62" y="774" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">Devices (M3)</text>
+<line x1="256" y1="741" x2="273" y2="741" stroke="#E67E22" stroke-width="2.5" marker-end="url(#arrA)"/>
+<rect x="276" y="682" width="204" height="118" rx="10" fill="#FFFFFF" stroke="#E7C29C" stroke-width="1.4"/>
+<circle cx="296" cy="704" r="13" fill="#E67E22"/>
+<text x="296" y="709" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">2</text>
+<text x="316" y="708" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="800" fill="#1A1F1C">ApiClient (HTTP)</text>
+<text x="288" y="738" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">POST /greenhouses/1/</text>
+<text x="288" y="756" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">devices/irrigation</text>
+<text x="288" y="774" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">+ Header Bearer JWT</text>
+<line x1="482" y1="741" x2="499" y2="741" stroke="#E67E22" stroke-width="2.5" marker-end="url(#arrA)"/>
+<rect x="502" y="682" width="204" height="118" rx="10" fill="#FFFFFF" stroke="#E7C29C" stroke-width="1.4"/>
+<circle cx="522" cy="704" r="13" fill="#E67E22"/>
+<text x="522" y="709" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">3</text>
+<text x="542" y="708" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="800" fill="#1A1F1C">FastAPI Auth (M1)</text>
+<text x="514" y="738" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">Проверка JWT токена</text>
+<text x="514" y="756" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">и сверка owner_id</text>
+<text x="514" y="774" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">(404 если чужая)</text>
+<line x1="708" y1="741" x2="725" y2="741" stroke="#E67E22" stroke-width="2.5" marker-end="url(#arrA)"/>
+<rect x="728" y="682" width="204" height="118" rx="10" fill="#FFFFFF" stroke="#E7C29C" stroke-width="1.4"/>
+<circle cx="748" cy="704" r="13" fill="#E67E22"/>
+<text x="748" y="709" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">4</text>
+<text x="768" y="708" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="800" fill="#1A1F1C">PostgreSQL TX</text>
+<text x="740" y="738" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">UPDATE devices ON;</text>
+<text x="740" y="756" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">INSERT device_events</text>
+<text x="740" y="774" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">(source='manual')</text>
+<line x1="934" y1="741" x2="951" y2="741" stroke="#E67E22" stroke-width="2.5" marker-end="url(#arrA)"/>
+<rect x="954" y="682" width="204" height="118" rx="10" fill="#FFFFFF" stroke="#E7C29C" stroke-width="1.4"/>
+<circle cx="974" cy="704" r="13" fill="#E67E22"/>
+<text x="974" y="709" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">5</text>
+<text x="994" y="708" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="800" fill="#1A1F1C">FastAPI Response</text>
+<text x="966" y="738" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">HTTP 200 OK JSON:</text>
+<text x="966" y="756" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">is_on=true, updated_at,</text>
+<text x="966" y="774" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">event_id в ответ</text>
+<line x1="1160" y1="741" x2="1177" y2="741" stroke="#E67E22" stroke-width="2.5" marker-end="url(#arrA)"/>
+<rect x="1180" y="682" width="204" height="118" rx="10" fill="#FFFFFF" stroke="#E7C29C" stroke-width="1.4"/>
+<circle cx="1200" cy="704" r="13" fill="#E67E22"/>
+<text x="1200" y="709" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">6</text>
+<text x="1220" y="708" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="800" fill="#1A1F1C">UI Confirmation</text>
+<text x="1192" y="738" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">Тумблер зеленый ON,</text>
+<text x="1192" y="756" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">запись в журнале,</text>
+<text x="1192" y="774" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="11.5" fill="#526056">или баннер M8 (offline)</text>
+</svg>
